@@ -25,6 +25,10 @@ public/videos/*.mp4
 public/*.mp4
 public/*.mov
 
+# Mac-specific Next.js binary
+*.tgz
+next-swc-darwin-arm64-*.tgz
+
 # OS
 .DS_Store
 Thumbs.db
