@@ -16,6 +16,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '*.supabase.co' },
+      { protocol: 'https', hostname: 'res.cloudinary.com' },
     ],
     formats: ['image/avif', 'image/webp'],
   },

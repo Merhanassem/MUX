@@ -126,7 +126,7 @@ function S1ProductInMotion() {
                 filter: 'blur(32px)',
                 transform: 'scale(1.4)',
               }} />
-              <IPhone label="Park Peace · MVP" scale={1.1} video="https://res.cloudinary.com/dopd3akqm/video/upload/mux/parkpeace-splash.mov" />
+              <IPhone label="Park Peace · MVP" scale={1.1} video="https://res.cloudinary.com/dopd3akqm/video/upload/mux/parkpeace-splash.mp4" />
             </div>
           </motion.div>
 
