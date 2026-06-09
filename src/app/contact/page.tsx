@@ -108,7 +108,7 @@ export default function ContactPage() {
       <main className="bg-background min-h-screen">
 
         {/* ── Hero ── */}
-        <section className="pt-40 pb-16 px-8 md:px-16 max-w-7xl mx-auto">
+        <section className="pt-32 md:pt-40 pb-12 md:pb-16 px-4 md:px-16 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -118,7 +118,7 @@ export default function ContactPage() {
             <span className="text-xs font-body text-secondary-text tracking-[0.18em] uppercase mb-6 block">
               Let&apos;s work together
             </span>
-            <h1 className="font-display text-[3rem] md:text-[5.5rem] leading-[0.94] text-primary-text mb-8">
+            <h1 className="font-display text-[2.4rem] md:text-[5.5rem] leading-[0.94] text-primary-text mb-6 md:mb-8">
               Got something<br />
               worth{' '}
               <span className="text-pink-brand">building?</span>
@@ -132,7 +132,7 @@ export default function ContactPage() {
         </section>
 
         {/* ── Form + Sidebar ── */}
-        <section className="px-8 md:px-16 pb-32 max-w-7xl mx-auto">
+        <section className="px-4 md:px-16 pb-20 md:pb-32 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 lg:gap-20">
 
             {/* ── Form ── */}
@@ -376,12 +376,12 @@ export default function ContactPage() {
                       initial={{ opacity: 0, y: 24 }}
                       animate={formInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.6, delay: 0.26 }}
-                      className="flex items-center justify-between"
+                      className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
                     >
                       <button
                         type="submit"
                         disabled={loading || !name || !email || !message}
-                        className="inline-flex items-center gap-3 bg-primary-text text-background font-body font-medium px-10 py-5 rounded-full hover:bg-pink-brand transition-all duration-300 cursor-none disabled:opacity-40 disabled:cursor-not-allowed group text-base"
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-primary-text text-background font-body font-medium px-10 py-5 rounded-full hover:bg-pink-brand transition-all duration-300 cursor-none disabled:opacity-40 disabled:cursor-not-allowed group text-base"
                       >
                         {loading ? (
                           <>

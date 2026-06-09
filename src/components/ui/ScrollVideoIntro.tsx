@@ -201,7 +201,7 @@ export default function ScrollVideoIntro() {
             style={{ opacity: 0, transform: 'translateY(24px)', willChange: 'opacity, transform', textAlign: 'center', maxWidth: '56rem' }}
           >
             <h1
-              className="font-display text-[2.5rem] md:text-[3.6rem] lg:text-[4.6rem] leading-[1.08] mb-8"
+              className="font-display text-[2rem] md:text-[3.6rem] lg:text-[4.6rem] leading-[1.1] mb-6 md:mb-8"
               style={{ color: '#F7F5F1', fontWeight: 600, textShadow: '0 2px 24px rgba(0,0,0,0.25)' }}
             >
               Helping teams{' '}
@@ -232,7 +232,7 @@ export default function ScrollVideoIntro() {
             style={{ opacity: 0, transform: 'translateY(18px)', willChange: 'opacity, transform', textAlign: 'center', maxWidth: '36rem', marginBottom: '3rem' }}
           >
             <p
-              className="font-body text-lg md:text-xl leading-relaxed"
+              className="font-body text-base md:text-xl leading-relaxed"
               style={{ color: 'rgba(247,245,241,0.82)', fontWeight: 500, textShadow: '0 1px 8px rgba(0,0,0,0.2)' }}
             >
               Got an idea, a messy product, or a feature that&apos;s not landing?{' '}

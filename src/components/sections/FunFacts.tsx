@@ -81,7 +81,7 @@ const cards = [
 
 export default function FunFacts() {
   return (
-    <section className="px-8 md:px-16 py-24 max-w-7xl mx-auto">
+    <section className="px-4 md:px-16 py-16 md:py-24 max-w-7xl mx-auto">
 
       <ScrollReveal>
         <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
@@ -94,7 +94,7 @@ export default function FunFacts() {
       </ScrollReveal>
 
       {/* Bento grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[160px]">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[160px]">
         {cards.map((card, i) => (
           <BentoCard key={i} card={card} index={i} />
         ))}
@@ -109,7 +109,8 @@ function BentoCard({ card, index }: { card: typeof cards[0]; index: number }) {
 
   const spanClass =
     card.size === 'wide' ? 'col-span-2' :
-    card.size === 'tall' ? 'row-span-2' : '';
+    card.size === 'tall' ? 'row-span-2' :
+    '';
 
   return (
     <motion.div
@@ -119,7 +120,7 @@ function BentoCard({ card, index }: { card: typeof cards[0]; index: number }) {
       transition={{ duration: 0.55, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`relative rounded-2xl p-6 flex flex-col justify-between overflow-hidden cursor-none transition-transform duration-300 ${spanClass}`}
+      className={`relative rounded-2xl p-4 md:p-6 flex flex-col justify-between overflow-hidden cursor-none transition-transform duration-300 ${spanClass}`}
       style={{
         background: card.bg,
         transform: hovered ? 'scale(1.02)' : 'scale(1)',
@@ -132,13 +133,13 @@ function BentoCard({ card, index }: { card: typeof cards[0]; index: number }) {
       <span className="text-2xl leading-none">{card.emoji}</span>
 
       <div>
-        <p className={`font-display text-3xl md:text-4xl leading-tight mb-1 ${card.dark ? 'text-white' : 'text-primary-text'}`}>
+        <p className={`font-display text-2xl md:text-4xl leading-tight mb-0.5 ${card.dark ? 'text-white' : 'text-primary-text'}`}>
           {card.stat}
         </p>
-        <p className={`font-body text-sm font-medium mb-1 ${card.dark ? 'text-white/80' : 'text-primary-text'}`}>
+        <p className={`font-body text-xs md:text-sm font-medium mb-0.5 ${card.dark ? 'text-white/80' : 'text-primary-text'}`}>
           {card.label}
         </p>
-        <p className={`font-body text-xs leading-snug ${card.dark ? 'text-white/50' : 'text-secondary-text'}`}>
+        <p className={`font-body text-[10px] md:text-xs leading-snug hidden sm:block ${card.dark ? 'text-white/50' : 'text-secondary-text'}`}>
           {card.sub}
         </p>
       </div>

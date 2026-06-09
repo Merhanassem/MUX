@@ -25,7 +25,7 @@ export default function About() {
   const imageY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
-    <section id="about" ref={ref} className="section-padding px-8 md:px-16 bg-background overflow-hidden">
+    <section id="about" ref={ref} className="section-padding px-4 md:px-16 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         <ScrollReveal>
@@ -39,7 +39,7 @@ export default function About() {
           {/* ── Left: Text ── */}
           <div>
             <ScrollReveal>
-              <h2 className="font-display text-[2.5rem] md:text-[3.5rem] leading-tight text-primary-text mb-8">
+              <h2 className="font-display text-[2rem] md:text-[3.5rem] leading-tight text-primary-text mb-6 md:mb-8">
                 I&apos;m a product designer who thinks in{' '}
                 <span className="text-pink-brand">outcomes</span>, not outputs.
               </h2>
@@ -119,7 +119,7 @@ export default function About() {
 
                 {/* Floating stat card */}
                 <motion.div
-                  className="absolute -bottom-6 -left-6 bg-background border border-border rounded-2xl p-5 shadow-sm"
+                  className="absolute -bottom-4 -left-3 md:-bottom-6 md:-left-6 bg-background border border-border rounded-2xl p-3 md:p-5 shadow-sm"
                   animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                 >
@@ -129,7 +129,7 @@ export default function About() {
 
                 {/* Floating status */}
                 <motion.div
-                  className="absolute -top-4 -right-4 bg-pink-brand rounded-2xl p-4 shadow-lg"
+                  className="absolute -top-3 -right-3 md:-top-4 md:-right-4 bg-pink-brand rounded-2xl p-3 md:p-4 shadow-lg"
                   animate={{ rotate: [0, 4, -3, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
                 >

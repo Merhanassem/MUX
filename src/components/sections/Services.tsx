@@ -76,7 +76,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       transition={{ duration: 0.65, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative rounded-3xl p-8 md:p-10 cursor-none overflow-hidden transition-all duration-500"
+      className="relative rounded-2xl md:rounded-3xl p-5 md:p-10 cursor-none overflow-hidden transition-all duration-500"
       style={{
         background: service.dark
           ? hovered ? '#111111' : '#0D0D0D'
@@ -104,7 +104,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         style={{ background: `radial-gradient(ellipse at 20% 20%, ${service.accent}08 0%, transparent 70%)` }}
       />
 
-      <div className="relative z-10 flex flex-col md:flex-row md:items-start gap-8">
+      <div className="relative z-10 flex flex-col md:flex-row md:items-start gap-5 md:gap-8">
 
         {/* Number + title */}
         <div className="md:w-64 flex-shrink-0">
@@ -160,7 +160,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
 export default function Services() {
   return (
-    <section id="services" className="section-padding px-8 md:px-16 bg-background">
+    <section id="services" className="section-padding px-4 md:px-16 bg-background">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -170,7 +170,7 @@ export default function Services() {
               <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
                 What I do
               </span>
-              <h2 className="font-display text-[2.5rem] md:text-[3.5rem] leading-tight text-primary-text">
+              <h2 className="font-display text-[2rem] md:text-[3.5rem] leading-tight text-primary-text">
                 Services built for<br />
                 <span className="text-pink-brand">real product work</span>
               </h2>
