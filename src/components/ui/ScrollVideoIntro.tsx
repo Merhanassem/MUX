@@ -39,9 +39,10 @@ export default function ScrollVideoIntro() {
     const section = sectionRef.current;
     if (!video || !section) return;
 
-    // Autoplay the video as background — more reliable than scrubbing on production
+    // Start frozen at frame 0
+    video.pause();
     video.currentTime = 0;
-    video.play().catch(() => {});
+    video.load();
 
     // Inline easing: ease-out cubic
     const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
@@ -122,8 +123,6 @@ export default function ScrollVideoIntro() {
           muted
           playsInline
           preload="auto"
-          autoPlay
-          loop
           className="absolute inset-0 w-full h-full object-cover"
           style={{ willChange: 'auto' }}
         />
