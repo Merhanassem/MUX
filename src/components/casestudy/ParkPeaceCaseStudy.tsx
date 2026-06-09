@@ -36,6 +36,34 @@ function Label({ text }: { text: string }) {
   );
 }
 
+/* ── Lazy Video ── */
+function LazyVideo({ src, className }: { src: string; className?: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (visible) videoRef.current?.play().catch(() => {});
+  }, [visible]);
+
+  return (
+    <div ref={containerRef} className="w-full h-full">
+      {visible && <video ref={videoRef} src={src} loop muted playsInline className={className ?? 'w-full h-full object-cover'} />}
+    </div>
+  );
+}
+
 /* ── iPhone Frame ── */
 function IPhone({ src, label, scale = 1, video }: { src?: string | null; label?: string; scale?: number; video?: string }) {
   const w = 220 * scale;
@@ -60,16 +88,9 @@ function IPhone({ src, label, scale = 1, video }: { src?: string | null; label?:
       }}>
         <div style={{ aspectRatio: '9/19.5', borderRadius: ri, overflow: 'hidden', background: '#000', position: 'relative' }}>
           {video ? (
-            <video
-              src={video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
+            <LazyVideo src={video} className="w-full h-full object-cover" />
           ) : src ? (
-            <img src={src} alt={label ?? 'App screen'} className="w-full h-full object-cover object-top" />
+            <img src={src} alt={label ?? 'App screen'} loading="lazy" className="w-full h-full object-cover object-top" />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center gap-3"
               style={{ background: `linear-gradient(160deg, ${A}18 0%, #050a0b 100%)` }}>

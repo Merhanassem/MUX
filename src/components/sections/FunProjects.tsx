@@ -241,7 +241,7 @@ const ExperimentCard = memo(function ExperimentCard({
   // Scale: active=1, adjacent=0.88, far=0.76
   const scale = isActive ? 1 : distance === 1 ? 0.88 : 0.76;
 
-  // Play/pause based on active state
+  // Play only active card, pause others
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
@@ -303,6 +303,7 @@ const ExperimentCard = memo(function ExperimentCard({
               loop
               muted
               playsInline
+              preload={isActive ? 'auto' : 'none'}
               onCanPlay={() => setVideoReady(true)}
               className="absolute inset-0 w-full h-full object-cover"
               style={{

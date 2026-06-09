@@ -64,7 +64,7 @@ function Phone({ src, label, scale = 1 }: { src: string; label?: string; scale?:
         flexShrink: 0,
       }}>
         <div style={{ aspectRatio: '9/19.5', borderRadius: ri, overflow: 'hidden', position: 'relative' }}>
-          <img src={src} alt={label || 'App screen'} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+          <img src={src} alt={label || 'App screen'} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
           {/* Dynamic island */}
           <div style={{ position: 'absolute', top: Math.max(5, w * 0.034), left: '50%', transform: 'translateX(-50%)', width: Math.max(20, w * 0.25), height: Math.max(5, w * 0.052), background: '#000', borderRadius: 999, zIndex: 10 }} />
         </div>
@@ -386,7 +386,7 @@ function JourneySection() {
                 border: `2px solid ${step.color}40`,
                 boxShadow: `0 12px 32px ${step.color}25`,
               }}>
-                <img src={step.src} alt={step.label} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
+                <img src={step.src} alt={step.label} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} />
               </div>
             ) : (
               <Phone src={step.src} scale={0.73} />

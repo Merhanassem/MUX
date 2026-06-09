@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useInView, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 
 /* ── Brand tokens ─────────────────────────────────────────────────────────── */
@@ -43,6 +43,43 @@ function FadeUp({ children, delay = 0, className = '' }: {
   );
 }
 
+/* ── Lazy Video ───────────────────────────────────────────────────────────── */
+function LazyVideo({ src, style }: { src: string; style?: React.CSSProperties }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v || !visible) return;
+    v.play().catch(() => {});
+  }, [visible]);
+
+  return (
+    <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
+      {visible && (
+        <video ref={ref} src={src} loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', ...style }} />
+      )}
+    </div>
+  );
+}
+
 /* ── Phone Mockup ─────────────────────────────────────────────────────────── */
 function Phone({ src, label, scale = 1, video }: {
   src?: string | null; label?: string; scale?: number; video?: string;
@@ -68,9 +105,9 @@ function Phone({ src, label, scale = 1, video }: {
       }}>
         <div style={{ aspectRatio: '9/19.5', borderRadius: ri, overflow: 'hidden', background: '#08091A', position: 'relative' }}>
           {video ? (
-            <video src={video} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <LazyVideo src={video} />
           ) : src ? (
-            <img src={src} alt={label || 'App screen'} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+            <img src={src} alt={label || 'App screen'} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center gap-3" style={{ background: 'linear-gradient(160deg, #0D1628 0%, #08091A 100%)' }}>
               <div style={{ width: 44, height: 44, borderRadius: 14, background: `${ACCENT}18`, border: `1px solid ${ACCENT}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

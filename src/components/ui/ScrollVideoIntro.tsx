@@ -64,8 +64,20 @@ export default function ScrollVideoIntro() {
     };
 
     let lastScrollY = -1;
+    let isPaused = false;
+
+    // Pause rAF when section is completely off-screen
+    const observer = new IntersectionObserver(
+      ([entry]) => { isPaused = !entry.isIntersecting; },
+      { rootMargin: '200px' }
+    );
+    observer.observe(section);
 
     const tick = () => {
+      rafRef.current = requestAnimationFrame(tick);
+
+      if (isPaused) return;
+
       const scrollY = window.scrollY;
 
       // Skip if nothing changed
@@ -103,11 +115,13 @@ export default function ScrollVideoIntro() {
         applyEl(availRef.current,    heroP, STAGGER[4], 10);
       }
 
-      rafRef.current = requestAnimationFrame(tick);
     };
 
     rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      observer.disconnect();
+    };
   }, []);
 
   return (
