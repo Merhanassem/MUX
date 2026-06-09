@@ -1,75 +1,147 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
-const facts = [
-  { text: 'Developers mostly hate me for noticing 2px misalignment.', emoji: '🔍' },
-  { text: '"Just one small change" was actually small: 0 times.', emoji: '😅' },
-  { text: 'Screens designed — enough to make my laptop nervous.', emoji: '🖥️' },
-  { text: 'Figma memory warnings received — too many to count.', emoji: '👾' },
-  { text: 'I\'ve asked "but why do users do that?" in more meetings than I can remember.', emoji: '🤔' },
-  { text: 'Coffee consumed per design sprint: classified.', emoji: '☕' },
-  { text: 'Hours spent convincing engineers that padding is not "just a pixel thing": many.', emoji: '😬' },
-  { text: 'Times the "final" version was actually final: rarely.', emoji: '🔄' },
+const cards = [
+  {
+    emoji: '🖥️',
+    stat: '1,000+',
+    label: 'Screens designed',
+    sub: 'Enough to make my laptop file a complaint.',
+    size: 'tall',
+    bg: '#0D0D0D',
+    dark: true,
+  },
+  {
+    emoji: '👾',
+    stat: '∞',
+    label: 'Figma memory warnings',
+    sub: 'If Figma had feelings, it would have quit by now.',
+    size: 'normal',
+    bg: '#F7F5F1',
+    dark: false,
+  },
+  {
+    emoji: '🔍',
+    stat: '2px',
+    label: 'The misalignment that started wars',
+    sub: 'Developers hate me for it. I\'d do it again.',
+    size: 'wide',
+    bg: '#F72585',
+    dark: true,
+  },
+  {
+    emoji: '🤔',
+    stat: '"Why?"',
+    label: 'My most-asked question',
+    sub: 'Asked in every meeting. Never gets old.',
+    size: 'normal',
+    bg: '#F7F5F1',
+    dark: false,
+  },
+  {
+    emoji: '☕',
+    stat: 'Classified',
+    label: 'Coffee per sprint',
+    sub: 'Some data is too sensitive to share.',
+    size: 'normal',
+    bg: '#1a1a2e',
+    dark: true,
+  },
+  {
+    emoji: '🔄',
+    stat: '~0',
+    label: 'Times "final" was final',
+    sub: 'The final version is a myth we tell stakeholders.',
+    size: 'wide',
+    bg: '#F7F5F1',
+    dark: false,
+  },
+  {
+    emoji: '😅',
+    stat: '0×',
+    label: '"Just one small change"',
+    sub: 'was actually small.',
+    size: 'normal',
+    bg: '#718F6B',
+    dark: true,
+  },
+  {
+    emoji: '😬',
+    stat: 'Many',
+    label: 'Hours spent on padding',
+    sub: '"It\'s not just a pixel" — me, always.',
+    size: 'normal',
+    bg: '#F7F5F1',
+    dark: false,
+  },
 ];
 
-// Duplicate for seamless loop
-const doubled = [...facts, ...facts];
-
 export default function FunFacts() {
-  const [paused, setPaused] = useState(false);
-
   return (
-    <section className="py-20 bg-background overflow-hidden">
+    <section className="px-8 md:px-16 py-24 max-w-7xl mx-auto">
+
       <ScrollReveal>
-        <div className="max-w-7xl mx-auto px-8 md:px-16 mb-10">
-          <span className="text-xs font-body text-secondary-text tracking-widest uppercase">
-            The human behind the work
-          </span>
-        </div>
+        <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
+          The human behind the work
+        </span>
+        <h2 className="font-display text-[2.4rem] md:text-[3.5rem] leading-tight text-primary-text mb-16 max-w-xl">
+          A few things<br />
+          <span className="text-pink-brand">you should know</span>
+        </h2>
       </ScrollReveal>
 
-      {/* Marquee strip */}
-      <div
-        className="relative"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to right, #F7F5F1, transparent)' }} />
-        <div className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to left, #F7F5F1, transparent)' }} />
-
-        <div
-          className="flex gap-4 w-max"
-          style={{
-            animation: paused ? 'none' : 'marquee 40s linear infinite',
-            willChange: 'transform',
-          }}
-        >
-          {doubled.map((fact, i) => (
-            <motion.div
-              key={i}
-              className="flex items-center gap-3 border border-border rounded-full px-5 py-3 bg-background flex-shrink-0 cursor-none"
-              whileHover={{
-                borderColor: i % 2 === 0 ? '#718F6B60' : '#F08CA660',
-                backgroundColor: i % 2 === 0 ? '#718F6B08' : '#F08CA608',
-                y: -2,
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              <span className="text-lg leading-none">{fact.emoji}</span>
-              <span className="text-sm font-body text-secondary-text whitespace-nowrap">
-                {fact.text}
-              </span>
-            </motion.div>
-          ))}
-        </div>
+      {/* Bento grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[160px]">
+        {cards.map((card, i) => (
+          <BentoCard key={i} card={card} index={i} />
+        ))}
       </div>
 
     </section>
+  );
+}
+
+function BentoCard({ card, index }: { card: typeof cards[0]; index: number }) {
+  const [hovered, setHovered] = useState(false);
+
+  const spanClass =
+    card.size === 'wide' ? 'col-span-2' :
+    card.size === 'tall' ? 'row-span-2' : '';
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.55, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className={`relative rounded-2xl p-6 flex flex-col justify-between overflow-hidden cursor-none transition-transform duration-300 ${spanClass}`}
+      style={{
+        background: card.bg,
+        transform: hovered ? 'scale(1.02)' : 'scale(1)',
+      }}
+    >
+      {/* Subtle noise texture overlay */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")' }} />
+
+      <span className="text-2xl leading-none">{card.emoji}</span>
+
+      <div>
+        <p className={`font-display text-3xl md:text-4xl leading-tight mb-1 ${card.dark ? 'text-white' : 'text-primary-text'}`}>
+          {card.stat}
+        </p>
+        <p className={`font-body text-sm font-medium mb-1 ${card.dark ? 'text-white/80' : 'text-primary-text'}`}>
+          {card.label}
+        </p>
+        <p className={`font-body text-xs leading-snug ${card.dark ? 'text-white/50' : 'text-secondary-text'}`}>
+          {card.sub}
+        </p>
+      </div>
+    </motion.div>
   );
 }

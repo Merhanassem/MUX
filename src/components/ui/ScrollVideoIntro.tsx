@@ -44,6 +44,17 @@ export default function ScrollVideoIntro() {
     video.currentTime = 0;
     video.load();
 
+    // Once metadata is ready, pre-seek to last frame so it's never blank
+    const onLoaded = () => {
+      if (video.duration && isFinite(video.duration)) {
+        // Only set to last frame if user hasn't scrolled yet
+        if (window.scrollY === 0) {
+          video.currentTime = 0;
+        }
+      }
+    };
+    video.addEventListener('loadedmetadata', onLoaded, { once: true });
+
     // Inline easing: ease-out cubic
     const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
@@ -67,8 +78,20 @@ export default function ScrollVideoIntro() {
     let isPaused = false;
 
     // Pause rAF when section is completely off-screen
+    // But lock the last frame when scrolled past (not when scrolled before)
     const observer = new IntersectionObserver(
-      ([entry]) => { isPaused = !entry.isIntersecting; },
+      ([entry]) => {
+        const scrolledPast = window.scrollY > (section.offsetTop + section.offsetHeight);
+        if (!entry.isIntersecting) {
+          isPaused = true;
+          // Lock video at last frame if we scrolled past the section
+          if (scrolledPast && video.duration && isFinite(video.duration)) {
+            video.currentTime = video.duration - 0.06;
+          }
+        } else {
+          isPaused = false;
+        }
+      },
       { rootMargin: '200px' }
     );
     observer.observe(section);
@@ -94,7 +117,8 @@ export default function ScrollVideoIntro() {
         // ── Video scrubbing ─────────────────────────────────────────
         if (video.readyState >= 2 && video.duration && isFinite(video.duration)) {
           const videoP = Math.min(1, progress / VIDEO_END_AT);
-          video.currentTime = videoP * video.duration;
+          // Cap slightly before duration so browser never shows a blank "ended" frame
+          video.currentTime = videoP * (video.duration - 0.06);
         }
 
         // ── Dark overlay (fades in as hero reveals) ──────────────────
@@ -121,6 +145,7 @@ export default function ScrollVideoIntro() {
     return () => {
       cancelAnimationFrame(rafRef.current);
       observer.disconnect();
+      video.removeEventListener('loadedmetadata', onLoaded);
     };
   }, []);
 

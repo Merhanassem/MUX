@@ -6,12 +6,12 @@ import ScrollReveal from '@/components/ui/ScrollReveal';
 import MagneticButton from '@/components/ui/MagneticButton';
 
 const topics = [
-  'Validate an idea',
-  'Product audit',
-  'UX Research',
-  'Full product design',
-  'Design system',
-  'Just to chat',
+  'We have an idea',
+  'We have users but low engagement',
+  'We need an MVP',
+  'We need design consistency',
+  'We are scaling the product',
+  'We need another perspective',
 ];
 
 export default function Contact() {
@@ -37,8 +37,8 @@ export default function Contact() {
             Got something<br />
             <span style={{ color: '#F08CA6' }}>worth building?</span>
           </h2>
-          <p className="font-body text-white/70 text-lg max-w-md mx-auto leading-relaxed">
-            Tell me what you&apos;re working on. Even if it&apos;s half-formed — that&apos;s usually when a conversation helps most.
+          <p className="font-body text-white/70 text-lg max-w-xl mx-auto leading-relaxed">
+            Whether you&apos;re building something from scratch, improving an existing product, or looking for an extra pair of hands on your team, I&apos;d love to hear what you&apos;re working on.
           </p>
         </motion.div>
 
@@ -49,7 +49,7 @@ export default function Contact() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="mb-10"
         >
-          <p className="text-sm font-body text-white/60 mb-4 text-center">I&apos;m reaching out because —</p>
+          <p className="text-sm font-body text-white/60 mb-4 text-center">Most conversations start with —</p>
           <div className="flex flex-wrap justify-center gap-3">
             {topics.map((topic) => (
               <motion.button
@@ -78,41 +78,13 @@ export default function Contact() {
           className="text-center space-y-4 mb-20"
         >
           <MagneticButton
-            href={`mailto:merhanassem22@gmail.com${selectedTopic ? `?subject=${encodeURIComponent(selectedTopic)}` : ''}`}
+            href={`/contact${selectedTopic ? `?topic=${encodeURIComponent(selectedTopic)}` : ''}`}
             variant="default"
             className="bg-pink-brand border-none text-white hover:bg-pink/90 text-base px-10 py-5"
           >
-            Send a message →
+            Let&apos;s talk →
           </MagneticButton>
 
-          <div className="flex items-center justify-center gap-6">
-            <a
-              href="https://www.linkedin.com/in/merhan-assem-53040a231/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-body text-white/55 hover:text-white transition-colors duration-200 cursor-none"
-            >
-              LinkedIn
-            </a>
-            <span className="text-white/20">·</span>
-            <a
-              href="https://www.behance.net/merhanassem2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-body text-white/55 hover:text-white transition-colors duration-200 cursor-none"
-            >
-              Behance
-            </a>
-            <span className="text-white/20">·</span>
-            <a
-              href="https://www.instagram.com/merhanassim?igsh=aGZwNnVzNjZhMnJn&utm_source=qr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-body text-white/55 hover:text-white transition-colors duration-200 cursor-none"
-            >
-              Instagram
-            </a>
-          </div>
         </motion.div>
 
         {/* Bottom quote */}

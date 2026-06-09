@@ -12,7 +12,8 @@ const FunProjects       = dynamic(() => import('@/components/sections/FunProject
 const HowIWork          = dynamic(() => import('@/components/sections/HowIThink'),   { ssr: false });
 const WhyTeams          = dynamic(() => import('@/components/sections/WhyTeams'),    { ssr: false });
 const About             = dynamic(() => import('@/components/sections/About'),       { ssr: false });
-const FunFacts          = dynamic(() => import('@/components/sections/FunFacts'),    { ssr: false });
+const Services          = dynamic(() => import('@/components/sections/Services'),   { ssr: false });
+const DomainMarquee     = dynamic(() => import('@/components/ui/DomainMarquee'),    { ssr: false });
 const Manifesto         = dynamic(() => import('@/components/sections/Manifesto'),  { ssr: false });
 const Contact           = dynamic(() => import('@/components/sections/Contact'),     { ssr: false });
 
@@ -25,10 +26,11 @@ export default function Home() {
         <WhatHappens />
         <Projects />
         <FunProjects />
+        <Services />
         <HowIWork />
         <WhyTeams />
         <About />
-        <FunFacts />
+        <DomainMarquee />
         <Manifesto />
         <Contact />
       </main>

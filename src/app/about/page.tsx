@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import DomainMarquee from '@/components/ui/DomainMarquee';
+import FunFacts from '@/components/sections/FunFacts';
 
 /* ── Data ──────────────────────────────────────────────────────────────────── */
 
@@ -92,11 +94,6 @@ const tools = [
   { name: 'Wix Studio', sub: 'No-code' },
 ];
 
-const domains = [
-  'EdTech', 'AI Platforms', 'Fintech', 'Payments', 'B2B SaaS',
-  'B2C SaaS', 'E-commerce', 'Retail', 'Health & Wellness',
-  'Multi-Sided Marketplaces', 'On-Demand Services', 'Pet Care',
-];
 
 const values = [
   {
@@ -516,20 +513,7 @@ export default function AboutPage() {
         </section>
 
         {/* ══ DOMAINS MARQUEE ═══════════════════════════════════════════════ */}
-        <section className="border-y border-border py-6 overflow-hidden bg-background">
-          <div
-            className="flex gap-8 items-center"
-            style={{ animation: 'marquee 22s linear infinite', width: 'max-content' }}
-            aria-hidden="true"
-          >
-            {[...domains, ...domains].map((d, i) => (
-              <span key={i} className="flex items-center gap-8 flex-shrink-0">
-                <span className="font-display text-xl md:text-2xl text-primary-text whitespace-nowrap">{d}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-pink-brand flex-shrink-0" />
-              </span>
-            ))}
-          </div>
-        </section>
+        <DomainMarquee />
 
         {/* ══ VALUES ════════════════════════════════════════════════════════ */}
         <section className="px-8 md:px-16 py-24 max-w-7xl mx-auto">
@@ -576,6 +560,9 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        {/* ══ FUN FACTS ═════════════════════════════════════════════════════ */}
+        <FunFacts />
 
         {/* ══ CTA ═══════════════════════════════════════════════════════════ */}
         <section className="bg-primary-text px-8 md:px-16 py-32">

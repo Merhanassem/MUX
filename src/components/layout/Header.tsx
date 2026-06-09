@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
@@ -13,12 +13,9 @@ const NAV_ITEMS = [
 ];
 
 export default function Header() {
+  const [scrollY, setScrollY]       = useState(0);
   const [hidden, setHidden]         = useState(false);
-  const [atTop, setAtTop]           = useState(true);
-  const [pastIntro, setPastIntro]   = useState(false);
-  const [overDarkHero, setOverDarkHero] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { scrollY } = useScroll();
   const pathname = usePathname();
   const isHome = pathname === '/';
 
@@ -29,60 +26,57 @@ export default function Header() {
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    const prev = scrollY.getPrevious() ?? 0;
-    setAtTop(latest < 20);
+  useEffect(() => {
+    let last = window.scrollY;
+    setScrollY(last);
 
-    if (isHome) {
-      // SCROLL_VH = 4 — intro section is 4 × 100vh tall
-      // Video last frame (header appears) = 2.4 × vh
-      // Hero fully visible / intro exits = ≥ 4 × vh
-      const vh             = window.innerHeight;
-      const heroAppears    = vh * 2.4;
-      const introExits     = vh * 3.8; // just before the 4×vh mark
+    const onScroll = () => {
+      const current = window.scrollY;
+      // Hide on scroll down (past 80px), show on scroll up
+      setHidden(current > last && current > 80);
+      setScrollY(current);
+      last = current;
+    };
 
-      const past = latest > heroAppears;
-      setPastIntro(past);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-      // Is the user still inside the video intro / over the dark hero?
-      setOverDarkHero(past && latest < introExits);
+  // On the home page, the hero video section is dark — use light text while over it.
+  // The scroll-video intro is 4×100vh tall. The sticky hero content appears around 80% through.
+  // We switch to dark text once the user has scrolled past the entire intro section.
+  const vh = typeof window !== 'undefined' ? window.innerHeight : 800;
+  const introHeight = 4 * vh;   // SCROLL_VH = 4
+  const overDarkSection = isHome && scrollY < introHeight;
 
-      if (past) {
-        if (latest < introExits) {
-          // Inside the hero reveal: never hide — the nav just appeared
-          setHidden(false);
-        } else {
-          // Past the intro: standard hide-on-scroll-down
-          setHidden(latest > prev && latest > introExits + 80);
-        }
-      } else {
-        setHidden(false);
-      }
-    } else {
-      setHidden(latest > prev && latest > 100);
-    }
-  });
+  // Frosted glass once scrolled; transparent at very top
+  const atTop = scrollY < 20;
+  const bgStyle = mobileOpen
+    ? 'rgba(247,245,241,0.97)'
+    : overDarkSection
+      ? atTop ? 'transparent' : 'rgba(9,9,13,0.55)'
+      : atTop
+        ? 'rgba(247,245,241,0)'
+        : 'rgba(247,245,241,0.92)';
 
-  const showHeader = !isHome || pastIntro;
+  const borderStyle = overDarkSection
+    ? atTop ? 'none' : '1px solid rgba(255,255,255,0.08)'
+    : atTop && !mobileOpen ? 'none' : '1px solid #E5E0D6';
+
+  const textColor    = overDarkSection ? 'rgba(255,255,255,0.85)' : 'var(--color-primary-text)';
+  const subTextColor = overDarkSection ? 'rgba(255,255,255,0.55)' : 'var(--color-secondary-text)';
+  const ctaBorder    = overDarkSection ? '1px solid rgba(255,255,255,0.3)' : '1px solid var(--color-border)';
 
   return (
     <>
       <motion.header
         className="fixed top-0 left-0 right-0 z-50 px-6 md:px-8 py-5 md:py-6 flex items-center justify-between"
-        animate={{
-          y: (!showHeader || hidden) ? -100 : 0,
-          opacity: showHeader ? 1 : 0,
-        }}
-        transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
+        animate={{ y: hidden && !mobileOpen ? -100 : 0 }}
+        transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
         style={{
-          backdropFilter: (atTop && !mobileOpen && !overDarkHero) ? 'none' : 'blur(20px)',
-          backgroundColor: overDarkHero
-            ? 'rgba(9,9,13,0.55)'                                            // dark frosted — over video
-            : (atTop && !mobileOpen)
-              ? 'rgba(247,245,241,0)'                                        // transparent — normal pages at top
-              : 'rgba(247,245,241,0.92)',                                    // light frosted — scrolled
-          borderBottom: (atTop && !mobileOpen && !overDarkHero) ? 'none' : overDarkHero ? '1px solid rgba(255,255,255,0.08)' : '1px solid #E5E0D6',
-          pointerEvents: showHeader ? 'auto' : 'none',
+          background: bgStyle,
+          backdropFilter: (atTop && !mobileOpen && overDarkSection) ? 'none' : 'blur(20px)',
+          borderBottom: borderStyle,
         }}
       >
         {/* Logo */}
@@ -94,7 +88,7 @@ export default function Header() {
             height={26}
             priority
             style={{
-              filter: overDarkHero ? 'brightness(0) invert(1)' : 'none',
+              filter: overDarkSection ? 'brightness(0) invert(1)' : 'none',
               transition: 'filter 0.3s ease',
             }}
           />
@@ -110,11 +104,7 @@ export default function Header() {
                 href={item.href}
                 aria-current={isActive ? 'page' : undefined}
                 className="text-sm font-body transition-colors duration-300 cursor-none relative group"
-                style={{
-                  color: overDarkHero
-                    ? isActive ? '#ffffff' : 'rgba(255,255,255,0.65)'
-                    : isActive ? 'var(--color-primary-text)' : 'var(--color-secondary-text)',
-                }}
+                style={{ color: isActive ? textColor : subTextColor }}
               >
                 {item.label}
                 <span
@@ -131,10 +121,7 @@ export default function Header() {
         <a
           href="/contact"
           className="hidden md:flex items-center gap-2 text-sm font-body font-medium rounded-full px-5 py-2.5 hover:bg-pink-brand hover:text-white hover:border-pink-brand transition-all duration-250 cursor-none"
-          style={{
-            color: overDarkHero ? 'rgba(255,255,255,0.9)' : 'var(--color-primary-text)',
-            border: overDarkHero ? '1px solid rgba(255,255,255,0.3)' : '1px solid var(--color-border)',
-          }}
+          style={{ color: textColor, border: ctaBorder }}
         >
           Let&apos;s talk
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -183,13 +170,8 @@ export default function Header() {
             transition={{ duration: 0.2 }}
             style={{ background: 'rgba(247,245,241,0.97)', backdropFilter: 'blur(24px)' }}
           >
-            {/* Push below header */}
             <div className="h-[73px] flex-shrink-0" />
-
-            <nav
-              className="flex flex-col gap-1 px-6 py-8 flex-1"
-              aria-label="Mobile navigation"
-            >
+            <nav className="flex flex-col gap-1 px-6 py-8 flex-1" aria-label="Mobile navigation">
               {NAV_ITEMS.map((item, i) => {
                 const isActive = pathname === item.href;
                 return (
@@ -205,13 +187,10 @@ export default function Header() {
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}
-                    {isActive && (
-                      <span className="w-2 h-2 rounded-full bg-pink-brand" aria-hidden="true" />
-                    )}
+                    {isActive && <span className="w-2 h-2 rounded-full bg-pink-brand" aria-hidden="true" />}
                   </motion.a>
                 );
               })}
-
               <motion.a
                 href="/contact"
                 initial={{ opacity: 0, y: 12 }}
