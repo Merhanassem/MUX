@@ -43,6 +43,9 @@ export default function ScrollVideoIntro() {
     video.pause();
     video.currentTime = 0;
 
+    // Force load on mobile/production where preload may be ignored
+    video.load();
+
     // Inline easing: ease-out cubic
     const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
@@ -79,7 +82,7 @@ export default function ScrollVideoIntro() {
         const progress      = Math.min(1, within / scrollable);
 
         // ── Video scrubbing ─────────────────────────────────────────
-        if (video.duration && isFinite(video.duration)) {
+        if (video.readyState >= 2 && video.duration && isFinite(video.duration)) {
           const videoP = Math.min(1, progress / VIDEO_END_AT);
           video.currentTime = videoP * video.duration;
         }
@@ -122,8 +125,7 @@ export default function ScrollVideoIntro() {
           muted
           playsInline
           preload="auto"
-          autoPlay
-          loop
+          poster="/hero-image.png"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ willChange: 'auto' }}
         />
