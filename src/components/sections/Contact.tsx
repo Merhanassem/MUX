@@ -21,7 +21,7 @@ export default function Contact() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="contact" ref={ref} className="section-padding px-8 md:px-16 bg-primary-text overflow-hidden">
+    <section id="contact" ref={ref} className="section-padding px-4 md:px-16 bg-primary-text overflow-hidden">
       <div className="max-w-4xl mx-auto">
         {/* Headline */}
         <motion.div
@@ -33,7 +33,7 @@ export default function Contact() {
           <span className="text-xs font-body text-white/60 tracking-widest uppercase mb-6 block">
             Let&apos;s work together
           </span>
-          <h2 className="font-display text-[3rem] md:text-[4.5rem] leading-tight text-background mb-6">
+          <h2 className="font-display text-[2.2rem] md:text-[4.5rem] leading-tight text-background mb-6">
             Got something<br />
             <span style={{ color: '#F08CA6' }}>worth building?</span>
           </h2>

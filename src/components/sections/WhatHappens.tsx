@@ -47,7 +47,7 @@ function Card({ card, index }: { card: typeof cards[0]; index: number }) {
       <motion.div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="relative border border-border rounded-3xl p-8 md:p-10 overflow-hidden cursor-none group"
+        className="relative border border-border rounded-2xl md:rounded-3xl p-5 md:p-10 overflow-hidden cursor-none group"
         animate={{
           borderColor: hovered ? card.accent + '60' : '#E5E0D6',
         }}
@@ -76,11 +76,11 @@ function Card({ card, index }: { card: typeof cards[0]; index: number }) {
         <div className="relative z-10">
           <span className="text-3xl mb-6 block">{card.icon}</span>
 
-          <p className="font-display text-2xl md:text-3xl text-secondary-text mb-2">
+          <p className="font-display text-xl md:text-3xl text-secondary-text mb-2">
             {card.question}
           </p>
           <motion.p
-            className="font-display text-2xl md:text-3xl font-medium"
+            className="font-display text-xl md:text-3xl font-medium"
             style={{ color: card.accent }}
             animate={{ x: hovered ? 4 : 0 }}
             transition={{ duration: 0.3 }}
@@ -120,14 +120,14 @@ function Card({ card, index }: { card: typeof cards[0]; index: number }) {
 
 export default function WhatHappens() {
   return (
-    <section className="section-padding px-8 md:px-16 bg-background">
+    <section className="section-padding px-4 md:px-16 bg-background">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
-          <div className="mb-16">
+          <div className="mb-10 md:mb-16">
             <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
               What we do together
             </span>
-            <h2 className="font-display text-[2.5rem] md:text-[3.5rem] leading-tight text-primary-text">
+            <h2 className="font-display text-[2rem] md:text-[3.5rem] leading-tight text-primary-text">
               What happens when<br />
               <span className="text-pink-brand">we work together</span>
             </h2>

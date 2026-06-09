@@ -257,7 +257,7 @@ const ExperimentCard = memo(function ExperimentCard({
     <motion.div
       ref={cardRef}
       className="relative flex-shrink-0"
-      style={{ width: 560, transformOrigin: 'center center' }}
+      style={{ width: 'min(560px, 80vw)', transformOrigin: 'center center' }}
       animate={{ scale }}
       transition={{ duration: 0.5, ease: [0.25, 1, 0.35, 1] }}
     >
@@ -483,12 +483,12 @@ export default function FunProjects() {
 
   return (
     <section className="section-padding bg-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 md:px-16 mb-14">
+      <div className="max-w-7xl mx-auto px-4 md:px-16 mb-10 md:mb-14">
         <ScrollReveal>
           <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
             Motion &amp; Interaction
           </span>
-          <h2 className="font-display text-[2.5rem] md:text-[3.5rem] leading-tight text-primary-text">
+          <h2 className="font-display text-[2rem] md:text-[3.5rem] leading-tight text-primary-text">
             Designing beyond<br />
             <span className="text-pink-brand">static screens</span>
           </h2>

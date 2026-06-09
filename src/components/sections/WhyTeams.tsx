@@ -47,14 +47,14 @@ export default function WhyTeams() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="section-padding px-8 md:px-16 bg-background overflow-hidden">
+    <section className="section-padding px-4 md:px-16 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
           <div className="mb-20">
             <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
               The real reason
             </span>
-            <h2 className="font-display text-[2.5rem] md:text-[3.5rem] leading-tight text-primary-text">
+            <h2 className="font-display text-[2rem] md:text-[3.5rem] leading-tight text-primary-text">
               Why teams bring me in
             </h2>
           </div>

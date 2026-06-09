@@ -201,14 +201,14 @@ export default function Projects() {
 
   return (
     <section id="work" className="section-padding bg-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 md:px-16 mb-14">
+      <div className="max-w-7xl mx-auto px-4 md:px-16 mb-10 md:mb-14">
         <ScrollReveal>
           <div className="flex items-end justify-between">
             <div>
               <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
                 Selected work
               </span>
-              <h2 className="font-display text-[2.5rem] md:text-[3.5rem] leading-tight text-primary-text">
+              <h2 className="font-display text-[2rem] md:text-[3.5rem] leading-tight text-primary-text">
                 Products I&apos;ve<br />helped shape
               </h2>
             </div>
