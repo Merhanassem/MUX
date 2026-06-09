@@ -39,12 +39,15 @@ export default function ScrollVideoIntro() {
     const section = sectionRef.current;
     if (!video || !section) return;
 
-    // Start frozen at frame 0
-    video.pause();
+    // Play briefly to force browser to load video, then pause at frame 0
     video.currentTime = 0;
-
-    // Force load on mobile/production where preload may be ignored
-    video.load();
+    video.play().then(() => {
+      video.pause();
+      video.currentTime = 0;
+    }).catch(() => {
+      // autoplay blocked — just load
+      video.load();
+    });
 
     // Inline easing: ease-out cubic
     const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
@@ -125,7 +128,6 @@ export default function ScrollVideoIntro() {
           muted
           playsInline
           preload="auto"
-          poster="/hero-image.png"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ willChange: 'auto' }}
         />
