@@ -122,6 +122,8 @@ export default function ScrollVideoIntro() {
           muted
           playsInline
           preload="auto"
+          autoPlay
+          loop
           className="absolute inset-0 w-full h-full object-cover"
           style={{ willChange: 'auto' }}
         />
