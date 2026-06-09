@@ -29,7 +29,7 @@ export default function SplashIntro({ onComplete }: SplashIntroProps) {
         >
           <video
             ref={videoRef}
-            src="https://res.cloudinary.com/dopd3akqm/video/upload/mux/hero-video.mp4"
+            src="/hero-video.mp4"
             autoPlay
             muted
             playsInline

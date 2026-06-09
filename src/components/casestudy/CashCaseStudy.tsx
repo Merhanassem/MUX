@@ -140,7 +140,7 @@ function S1Hero() {
                 style={{ position: 'absolute', inset: -60, background: `radial-gradient(ellipse at center, ${ACCENT}20 0%, transparent 70%)`, pointerEvents: 'none' }}
               />
               {/* Main phone */}
-              <Phone video="https://res.cloudinary.com/dopd3akqm/video/upload/mux/cash-splash.mp4" scale={1.1} />
+              <Phone video="/cash-splash.mov" scale={1.1} />
               {/* Floating stat cards */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}

@@ -118,7 +118,7 @@ export default function ScrollVideoIntro() {
         {/* Video — covers full screen, paused, scrubbed by scroll */}
         <video
           ref={videoRef}
-          src="https://res.cloudinary.com/dopd3akqm/video/upload/mux/hero-video.mp4"
+          src="/hero-video.mp4"
           muted
           playsInline
           preload="auto"
