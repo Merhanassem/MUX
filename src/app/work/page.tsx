@@ -103,17 +103,17 @@ function WorkHero() {
       {/* Subtle grid */}
       <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,0,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.03) 1px,transparent 1px)', backgroundSize: '72px 72px', pointerEvents: 'none', zIndex: 0 }} />
 
-      <motion.div style={{ y: yText, opacity, position: 'relative', zIndex: 1, paddingTop: 120, paddingBottom: 80 }}
-        className="max-w-7xl mx-auto px-8 md:px-16 w-full">
+      <motion.div style={{ y: yText, opacity, position: 'relative', zIndex: 1, paddingTop: 80, paddingBottom: 60 }}
+        className="max-w-7xl mx-auto px-5 md:px-16 w-full">
 
         {/* Label */}
         <motion.span initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
-          style={{ fontSize: 11, letterSpacing: '0.22em', color: 'var(--color-secondary-text)', textTransform: 'uppercase', fontFamily: 'var(--font-body)', display: 'block', marginBottom: 40, marginTop: 120 }}>
+          style={{ fontSize: 11, letterSpacing: '0.22em', color: 'var(--color-secondary-text)', textTransform: 'uppercase', fontFamily: 'var(--font-body)', display: 'block', marginBottom: 28, marginTop: 80 }}>
           Selected Work · {projects.length} Products
         </motion.span>
 
         {/* Kinetic headline */}
-        <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(56px, 9vw, 120px)', lineHeight: 0.92, letterSpacing: '-0.03em', marginBottom: 40, overflow: 'hidden' }}>
+        <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(36px, 9vw, 120px)', lineHeight: 0.92, letterSpacing: '-0.03em', marginBottom: 28, overflow: 'hidden' }}>
           {/* Line 1 */}
           <div style={{ display: 'flex', gap: '0.22em', overflow: 'hidden' }}>
             {line1.map((w, i) => (
@@ -225,8 +225,9 @@ function ProgressNav({ active, onSelect }: { active: number; onSelect: (i: numbe
 ══════════════════════════════════════════════════════════════════════════════ */
 const IMAGE_HEIGHT = 66; // % of viewport height the image occupies
 
-function ProjectScene({ project, isActive }: { project: typeof projects[0]; isActive: boolean }) {
+function ProjectScene({ project, isActive, winW }: { project: typeof projects[0]; isActive: boolean; winW: number }) {
   const [hovered, setHovered] = useState(false);
+  const isMobile = winW < 768;
   const a = atm(project.slug);
 
   return (
@@ -264,99 +265,152 @@ function ProjectScene({ project, isActive }: { project: typeof projects[0]; isAc
         {/* Accent wash */}
         <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(ellipse 50% 120% at 0% 50%, ${a.glow}12 0%, transparent 65%)`, pointerEvents: 'none' }} />
 
-        <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', alignItems: 'center', padding: '0 56px', gap: 0 }}>
+        <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', alignItems: 'center', padding: isMobile ? '0 20px' : '0 56px', gap: 0 }}>
 
-          {/* COL 1 — title + subtitle (takes all remaining space) */}
-          <div style={{ flex: 1, minWidth: 0, paddingRight: 32 }}>
+          {isMobile ? (
+            /* ── MOBILE: compact single-column layout ── */
             <motion.div
-              animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -12 }}
-              transition={{ duration: 0.45, delay: 0.04 }}
-              style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-              <div style={{ width: 18, height: 1.5, background: a.glow, flexShrink: 0 }} />
-              <span style={{ fontSize: 9, letterSpacing: '0.16em', color: a.glow, textTransform: 'uppercase', fontFamily: 'var(--font-body)', fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {a.industry}
-              </span>
-            </motion.div>
-
-            {/* Title — allow natural flow, no clip */}
-            <motion.h2
               animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 10 }}
-              transition={{ duration: 0.55, delay: 0.09, ease: [0.16, 1, 0.3, 1] }}
-              style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px, 3.2vw, 44px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.025em', color: '#fff', margin: '0 0 6px' }}>
-              {project.title}
-            </motion.h2>
-
-            <motion.p
-              animate={{ opacity: isActive ? 1 : 0 }}
-              transition={{ duration: 0.45, delay: 0.16 }}
-              style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.68)', lineHeight: 1.55, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-              {project.subtitle}
-            </motion.p>
-          </div>
-
-          {/* DIVIDER */}
-          <div style={{ width: 1, height: 48, background: 'rgba(255,255,255,0.08)', flexShrink: 0, margin: '0 28px' }} />
-
-          {/* COL 2 — badges (fixed width) */}
-          <motion.div
-            animate={{ opacity: isActive ? 1 : 0 }}
-            transition={{ duration: 0.45, delay: 0.20 }}
-            style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-              <span style={{ fontSize: 10, padding: '4px 11px', borderRadius: 999, background: a.glow + '30', color: '#fff', border: `1px solid ${a.glow}55`, fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>
-                {project.category}
-              </span>
-              <span style={{ fontSize: 10, padding: '4px 11px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.60)', fontFamily: 'var(--font-body)', background: 'rgba(255,255,255,0.05)', whiteSpace: 'nowrap' }}>
-                {project.year}
-              </span>
-              {project.role && (
-                <span style={{ fontSize: 10, padding: '4px 11px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.18)', color: 'rgba(255,255,255,0.62)', fontFamily: 'var(--font-body)', whiteSpace: 'nowrap' }}>
-                  {project.role}
+              transition={{ duration: 0.45, delay: 0.06 }}
+              style={{ flex: 1, minWidth: 0 }}>
+              {/* Industry label */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
+                <div style={{ width: 14, height: 1.5, background: a.glow, flexShrink: 0 }} />
+                <span style={{ fontSize: 9, letterSpacing: '0.14em', color: a.glow, textTransform: 'uppercase', fontFamily: 'var(--font-body)', fontWeight: 700 }}>
+                  {a.industry}
                 </span>
-              )}
-            </div>
-            <div style={{ display: 'flex', gap: 6 }}>
-              {project.tags?.slice(0, 3).map(t => (
-                <span key={t} style={{ fontSize: 10, padding: '3px 10px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.50)', fontFamily: 'var(--font-body)', whiteSpace: 'nowrap' }}>
-                  {t}
+              </div>
+              {/* Title */}
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 6vw, 32px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.025em', color: '#fff', margin: '0 0 4px' }}>
+                {project.title}
+              </h2>
+              {/* Subtitle */}
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'rgba(255,255,255,0.65)', lineHeight: 1.5, margin: '0 0 10px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                {project.subtitle}
+              </p>
+              {/* Tags row */}
+              <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 9, padding: '3px 9px', borderRadius: 999, background: a.glow + '30', color: '#fff', border: `1px solid ${a.glow}55`, fontFamily: 'var(--font-body)', fontWeight: 700, whiteSpace: 'nowrap' }}>
+                  {project.category}
                 </span>
-              ))}
-            </div>
-          </motion.div>
+                <span style={{ fontSize: 9, padding: '3px 9px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.55)', fontFamily: 'var(--font-body)', whiteSpace: 'nowrap' }}>
+                  {project.year}
+                </span>
+              </div>
+            </motion.div>
+          ) : (
+            /* ── DESKTOP: 3-column layout ── */
+            <>
+              {/* COL 1 — title + subtitle (takes all remaining space) */}
+              <div style={{ flex: 1, minWidth: 0, paddingRight: 32 }}>
+                <motion.div
+                  animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -12 }}
+                  transition={{ duration: 0.45, delay: 0.04 }}
+                  style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                  <div style={{ width: 18, height: 1.5, background: a.glow, flexShrink: 0 }} />
+                  <span style={{ fontSize: 9, letterSpacing: '0.16em', color: a.glow, textTransform: 'uppercase', fontFamily: 'var(--font-body)', fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {a.industry}
+                  </span>
+                </motion.div>
+                <motion.h2
+                  animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 10 }}
+                  transition={{ duration: 0.55, delay: 0.09, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px, 3.2vw, 44px)', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.025em', color: '#fff', margin: '0 0 6px' }}>
+                  {project.title}
+                </motion.h2>
+                <motion.p
+                  animate={{ opacity: isActive ? 1 : 0 }}
+                  transition={{ duration: 0.45, delay: 0.16 }}
+                  style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'rgba(255,255,255,0.68)', lineHeight: 1.55, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {project.subtitle}
+                </motion.p>
+              </div>
 
-          {/* DIVIDER */}
-          <div style={{ width: 1, height: 48, background: 'rgba(255,255,255,0.08)', flexShrink: 0, margin: '0 28px' }} />
+              {/* DIVIDER */}
+              <div style={{ width: 1, height: 48, background: 'rgba(255,255,255,0.08)', flexShrink: 0, margin: '0 28px' }} />
 
-          {/* COL 3 — CTA */}
-          <motion.div
-            animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 10 }}
-            transition={{ duration: 0.45, delay: 0.26 }}
-            style={{ flexShrink: 0 }}>
+              {/* COL 2 — badges */}
+              <motion.div
+                animate={{ opacity: isActive ? 1 : 0 }}
+                transition={{ duration: 0.45, delay: 0.20 }}
+                style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
+                <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                  <span style={{ fontSize: 10, padding: '4px 11px', borderRadius: 999, background: a.glow + '30', color: '#fff', border: `1px solid ${a.glow}55`, fontFamily: 'var(--font-body)', fontWeight: 700, letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>
+                    {project.category}
+                  </span>
+                  <span style={{ fontSize: 10, padding: '4px 11px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.60)', fontFamily: 'var(--font-body)', background: 'rgba(255,255,255,0.05)', whiteSpace: 'nowrap' }}>
+                    {project.year}
+                  </span>
+                  {project.role && (
+                    <span style={{ fontSize: 10, padding: '4px 11px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.18)', color: 'rgba(255,255,255,0.62)', fontFamily: 'var(--font-body)', whiteSpace: 'nowrap' }}>
+                      {project.role}
+                    </span>
+                  )}
+                </div>
+                <div style={{ display: 'flex', gap: 6 }}>
+                  {project.tags?.slice(0, 3).map(t => (
+                    <span key={t} style={{ fontSize: 10, padding: '3px 10px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.50)', fontFamily: 'var(--font-body)', whiteSpace: 'nowrap' }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* DIVIDER */}
+              <div style={{ width: 1, height: 48, background: 'rgba(255,255,255,0.08)', flexShrink: 0, margin: '0 28px' }} />
+
+              {/* COL 3 — CTA */}
+              <motion.div
+                animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 10 }}
+                transition={{ duration: 0.45, delay: 0.26 }}
+                style={{ flexShrink: 0 }}>
+                <motion.a
+                  href={`/work/${project.slug}`}
+                  onHoverStart={() => setHovered(true)}
+                  onHoverEnd={() => setHovered(false)}
+                  whileHover={{ scale: 1.04 }}
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 9,
+                    fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 700,
+                    color: '#fff', textDecoration: 'none',
+                    border: '1.5px solid rgba(255,255,255,0.20)',
+                    borderRadius: 999, padding: '12px 24px',
+                    background: 'rgba(255,255,255,0.07)',
+                    letterSpacing: '0.02em',
+                    transition: 'background 0.25s, border-color 0.25s',
+                    whiteSpace: 'nowrap',
+                  }}
+                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = a.glow + '35'; el.style.borderColor = a.glow; }}
+                  onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = 'rgba(255,255,255,0.07)'; el.style.borderColor = 'rgba(255,255,255,0.20)'; }}>
+                  View Case Study
+                  <motion.svg animate={{ x: hovered ? 4 : 0 }} transition={{ duration: 0.18 }}
+                    width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </motion.svg>
+                </motion.a>
+              </motion.div>
+            </>
+          )}
+
+          {/* Mobile CTA — tap anywhere on slide to view case study */}
+          {isMobile && (
             <motion.a
               href={`/work/${project.slug}`}
-              onHoverStart={() => setHovered(true)}
-              onHoverEnd={() => setHovered(false)}
-              whileHover={{ scale: 1.04 }}
+              animate={{ opacity: isActive ? 1 : 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
               style={{
-                display: 'inline-flex', alignItems: 'center', gap: 9,
-                fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 700,
+                flexShrink: 0, marginLeft: 12,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: 40, height: 40, borderRadius: '50%',
+                border: `1.5px solid ${a.glow}60`,
+                background: a.glow + '20',
                 color: '#fff', textDecoration: 'none',
-                border: '1.5px solid rgba(255,255,255,0.20)',
-                borderRadius: 999, padding: '12px 24px',
-                background: 'rgba(255,255,255,0.07)',
-                letterSpacing: '0.02em',
-                transition: 'background 0.25s, border-color 0.25s',
-                whiteSpace: 'nowrap',
-              }}
-              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = a.glow + '35'; el.style.borderColor = a.glow; }}
-              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = 'rgba(255,255,255,0.07)'; el.style.borderColor = 'rgba(255,255,255,0.20)'; }}>
-              View Case Study
-              <motion.svg animate={{ x: hovered ? 4 : 0 }} transition={{ duration: 0.18 }}
-                width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3">
+              }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3">
                 <path d="M5 12h14M12 5l7 7-7 7" />
-              </motion.svg>
+              </svg>
             </motion.a>
-          </motion.div>
+          )}
         </div>
       </div>
     </div>
@@ -466,10 +520,19 @@ function HorizontalShowcase() {
     const onTouchEnd = (e: TouchEvent) => {
       const dx = e.changedTouches[0].clientX - touchStartX;
       const dy = e.changedTouches[0].clientY - touchStartY;
-      // Only respond to horizontal-dominant swipes (>40px) that aren't scrolls
-      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
-      if (dx < 0) goTo(activeRef.current + 1);
-      else        goTo(activeRef.current - 1);
+      // Respond to both horizontal swipes (left/right) and vertical swipes (up/down)
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+      if (absDx < 30 && absDy < 30) return; // too small
+      if (absDx > absDy) {
+        // Horizontal swipe
+        if (dx < 0) goTo(activeRef.current + 1);
+        else        goTo(activeRef.current - 1);
+      } else {
+        // Vertical swipe — up = next, down = prev
+        if (dy < 0) goTo(activeRef.current + 1);
+        else        goTo(activeRef.current - 1);
+      }
     };
     window.addEventListener('touchstart', onTouchStart, { passive: true });
     window.addEventListener('touchend', onTouchEnd, { passive: true });
@@ -482,7 +545,8 @@ function HorizontalShowcase() {
 
   return (
     <>
-      <ProgressNav active={active} onSelect={goTo} />
+      {/* ProgressNav only on desktop — too cramped on mobile */}
+      {winW >= 768 && <ProgressNav active={active} onSelect={goTo} />}
 
       {/* Outer wrapper: must be taller than the sticky child so sticky can release
           before EndSection appears — no overlap */}
@@ -526,7 +590,7 @@ function HorizontalShowcase() {
         {/* Track */}
         <motion.div style={{ x, display: 'flex', height: '100%', willChange: 'transform' }}>
           {projects.map((project, i) => (
-            <ProjectScene key={project.id} project={project} isActive={i === active} />
+            <ProjectScene key={project.id} project={project} isActive={i === active} winW={winW} />
           ))}
         </motion.div>
       </div>
