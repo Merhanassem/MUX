@@ -120,10 +120,10 @@ function Card({ card, index }: { card: typeof cards[0]; index: number }) {
 
 export default function WhatHappens() {
   return (
-    <section className="section-padding px-4 md:px-16 bg-background">
+    <section className="section-padding px-5 md:px-16 bg-background">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
-          <div className="mb-10 md:mb-16">
+          <div className="mb-8 md:mb-16">
             <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
               What we do together
             </span>
@@ -134,7 +134,7 @@ export default function WhatHappens() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
           {cards.map((card, i) => (
             <Card key={card.id} card={card} index={i} />
           ))}

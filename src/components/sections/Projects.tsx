@@ -195,7 +195,7 @@ export default function Projects() {
 
   return (
     <section id="work" className="section-padding bg-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-16 mb-10 md:mb-14">
+      <div className="max-w-7xl mx-auto px-5 md:px-16 mb-10 md:mb-14">
         <ScrollReveal>
           <div className="flex items-end justify-between">
             <div>

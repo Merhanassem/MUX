@@ -160,11 +160,11 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
 export default function Services() {
   return (
-    <section id="services" className="section-padding px-4 md:px-16 bg-background">
+    <section id="services" className="section-padding px-5 md:px-16 bg-background">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8 mb-10 md:mb-16">
           <div>
             <ScrollReveal>
               <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">

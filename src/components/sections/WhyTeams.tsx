@@ -47,7 +47,7 @@ export default function WhyTeams() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="section-padding px-4 md:px-16 bg-background overflow-hidden">
+    <section className="section-padding px-5 md:px-16 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
           <div className="mb-20">

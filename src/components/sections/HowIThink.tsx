@@ -53,10 +53,10 @@ export default function HowIWork() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="section-padding px-4 md:px-16 bg-primary-text overflow-hidden">
+    <section className="section-padding px-5 md:px-16 bg-primary-text overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
-          <div className="mb-16">
+          <div className="mb-10 md:mb-16">
             <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
               The process
             </span>
@@ -66,7 +66,7 @@ export default function HowIWork() {
           </div>
         </ScrollReveal>
 
-        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-start">
           {/* Timeline */}
           <div className="relative">
             <div className="absolute left-5 top-0 bottom-0 w-px bg-white/10" />
@@ -123,7 +123,7 @@ export default function HowIWork() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="border border-white/10 rounded-3xl p-10"
+              className="border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-10"
             >
               <div
                 className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6"

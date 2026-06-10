@@ -25,7 +25,7 @@ export default function About() {
   const imageY = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
-    <section id="about" ref={ref} className="section-padding px-4 md:px-16 bg-background overflow-hidden">
+    <section id="about" ref={ref} className="section-padding px-5 md:px-16 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         <ScrollReveal>

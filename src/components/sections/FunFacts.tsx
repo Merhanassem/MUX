@@ -81,7 +81,7 @@ const cards = [
 
 export default function FunFacts() {
   return (
-    <section className="px-4 md:px-16 py-16 md:py-24 max-w-7xl mx-auto">
+    <section className="px-5 md:px-16 py-16 md:py-24 max-w-7xl mx-auto">
 
       <ScrollReveal>
         <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">

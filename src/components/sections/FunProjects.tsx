@@ -483,7 +483,7 @@ export default function FunProjects() {
 
   return (
     <section className="section-padding bg-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-16 mb-10 md:mb-14">
+      <div className="max-w-7xl mx-auto px-5 md:px-16 mb-10 md:mb-14">
         <ScrollReveal>
           <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
             Motion &amp; Interaction

@@ -59,7 +59,7 @@ export default function Manifesto() {
     >
       {/* Sticky viewport panel */}
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 md:px-16 w-full">
+        <div className="max-w-7xl mx-auto px-5 md:px-16 w-full">
 
           {/* Two-column horizontal layout */}
           <div className="grid grid-cols-[120px_1fr] md:grid-cols-[200px_1fr] gap-8 md:gap-16 items-center">

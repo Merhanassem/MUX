@@ -21,7 +21,7 @@ export default function Contact() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="contact" ref={ref} className="section-padding px-4 md:px-16 bg-primary-text overflow-hidden">
+    <section id="contact" ref={ref} className="section-padding px-5 md:px-16 bg-primary-text overflow-hidden">
       <div className="max-w-4xl mx-auto">
         {/* Headline */}
         <motion.div
