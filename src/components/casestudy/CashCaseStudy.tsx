@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, useInView, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 
 /* ── Brand tokens ─────────────────────────────────────────────────────────── */
@@ -107,7 +108,7 @@ function Phone({ src, label, scale = 1, video }: {
           {video ? (
             <LazyVideo src={video} />
           ) : src ? (
-            <img src={src} alt={label || 'App screen'} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+            <Image src={src} alt={label || 'App screen'} fill sizes="(max-width: 768px) 80vw, 420px" style={{ objectFit: 'cover', objectPosition: 'top' }} />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center gap-3" style={{ background: 'linear-gradient(160deg, #0D1628 0%, #08091A 100%)' }}>
               <div style={{ width: 44, height: 44, borderRadius: 14, background: `${ACCENT}18`, border: `1px solid ${ACCENT}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -139,7 +140,7 @@ function S1Hero() {
 
   return (
     <section style={{ background: BG, padding: '120px 0 100px', overflow: 'hidden' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <div className="grid grid-cols-2 gap-16 items-center">
           {/* Left: text */}
           <FadeUp>
@@ -231,7 +232,7 @@ function S2DecisionJourney() {
   return (
     <div ref={stickyRef} style={{ height: `${JOURNEY_STEPS.length * 100}vh` }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', background: BG2, display: 'flex', alignItems: 'center' }}>
-        <div className="max-w-6xl mx-auto px-8 w-full">
+        <div className="max-w-6xl mx-auto px-5 md:px-8 w-full">
           <div className="grid grid-cols-2 gap-16 items-center">
             {/* Left: step list */}
             <div>
@@ -312,7 +313,7 @@ function S3HowItWorks() {
   const [hovered, setHovered] = useState<number | null>(null);
   return (
     <section style={{ background: BG, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <Label text="03 — How the Platform Works" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -369,7 +370,7 @@ function S4Calculator() {
 
   return (
     <section style={{ background: BG2, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <Label text="04 — Loan Calculator Experience" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -458,7 +459,7 @@ function S5Application() {
 
   return (
     <section style={{ background: BG, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <Label text="05 — Application Experience" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -541,7 +542,7 @@ function S6Tracking() {
 
   return (
     <section style={{ background: BG2, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <Label text="06 — Application Tracking" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -605,7 +606,7 @@ const PROFILE_MODULES = [
 function S7Profile() {
   return (
     <section style={{ background: BG, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <Label text="07 — Profile & Account Management" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -695,7 +696,7 @@ const DECISIONS = [
 function S8Decisions() {
   return (
     <section style={{ background: BG2, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <Label text="08 — Key Product Decisions" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -749,7 +750,7 @@ function S9Ecosystem() {
 
   return (
     <section style={{ background: BG, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <Label text="09 — Financing Ecosystem" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -823,7 +824,7 @@ const OUTCOMES = [
 function S10Outcome() {
   return (
     <section style={{ background: BG2, padding: '100px 0 120px' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <Label text="10 — Outcome" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>

@@ -62,7 +62,7 @@ export default function Manifesto() {
         <div className="max-w-7xl mx-auto px-5 md:px-16 w-full">
 
           {/* Two-column horizontal layout */}
-          <div className="grid grid-cols-[120px_1fr] md:grid-cols-[200px_1fr] gap-8 md:gap-16 items-center">
+          <div className="grid grid-cols-[56px_1fr] md:grid-cols-[200px_1fr] gap-5 md:gap-16 items-center">
 
             {/* Big ghost number — left column */}
             <AnimatePresence mode="wait">
@@ -74,7 +74,7 @@ export default function Manifesto() {
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 className="font-display leading-none select-none text-right"
                 style={{
-                  fontSize: 'clamp(5rem, 14vw, 11rem)',
+                  fontSize: 'clamp(2.75rem, 12vw, 11rem)',
                   color: s.accentColor + '18',
                 }}
               >
@@ -100,8 +100,8 @@ export default function Manifesto() {
             </AnimatePresence>
           </div>
 
-          {/* Progress indicators */}
-          <div className="flex gap-2 mt-12 md:mt-16 pl-[120px] md:pl-[200px] ml-8 md:ml-16">
+          {/* Progress indicators — aligned under the statement column */}
+          <div className="flex gap-2 mt-10 md:mt-16 pl-[76px] md:pl-[216px]">
             {statements.map((st, i) => (
               <motion.div
                 key={i}

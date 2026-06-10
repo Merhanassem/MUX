@@ -176,7 +176,7 @@ export default function ScrollVideoIntro() {
         {/* ── Hero Content ── */}
         <div
           ref={heroRef}
-          className="absolute inset-0 z-10 flex flex-col items-center justify-center px-8"
+          className="absolute inset-0 z-10 flex flex-col items-center justify-center px-5 md:px-8"
         >
           {/* Logo */}
           <div

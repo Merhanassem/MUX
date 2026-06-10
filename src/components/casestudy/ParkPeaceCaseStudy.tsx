@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, useInView, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 
 /* ── Brand tokens ── */
@@ -90,7 +91,7 @@ function IPhone({ src, label, scale = 1, video }: { src?: string | null; label?:
           {video ? (
             <LazyVideo src={video} className="w-full h-full object-cover" />
           ) : src ? (
-            <img src={src} alt={label ?? 'App screen'} loading="lazy" className="w-full h-full object-cover object-top" />
+            <Image src={src} alt={label ?? 'App screen'} fill sizes="(max-width: 768px) 80vw, 420px" className="object-cover object-top" />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center gap-3"
               style={{ background: `linear-gradient(160deg, ${A}18 0%, #050a0b 100%)` }}>
@@ -129,7 +130,7 @@ function S1ProductInMotion() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section ref={ref} className="px-8 md:px-16 py-24 md:py-32" style={{ background: BG }}>
+    <section ref={ref} className="px-5 md:px-16 py-24 md:py-32" style={{ background: BG }}>
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
@@ -237,7 +238,7 @@ function S2TheIdea() {
   return (
     <div ref={containerRef} style={{ height: '380vh', position: 'relative', background: TEXT }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
-        <div className="max-w-7xl mx-auto px-8 md:px-16 w-full">
+        <div className="max-w-7xl mx-auto px-5 md:px-16 w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
             {/* Left — step content */}
@@ -373,7 +374,7 @@ const FEATURES = [
 
 function S3HowItWorks() {
   return (
-    <section className="px-8 md:px-16 py-24 md:py-32" style={{ background: BG }}>
+    <section className="px-5 md:px-16 py-24 md:py-32" style={{ background: BG }}>
       <div className="max-w-7xl mx-auto">
         <FadeUp>
           <Label text="How It Works" />
@@ -465,7 +466,7 @@ function S4CoreExperience() {
   return (
     <div ref={containerRef} style={{ height: '320vh', position: 'relative', background: BG2 }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <div className="max-w-7xl mx-auto px-8 md:px-16 w-full mb-8">
+        <div className="max-w-7xl mx-auto px-5 md:px-16 w-full mb-8">
           <FadeUp><Label text="The Core Experience" /></FadeUp>
           <div className="flex items-end justify-between">
             <motion.h2 className="font-display"
@@ -541,7 +542,7 @@ const MVP_DAYS = [
 
 function S5MVPTimeline() {
   return (
-    <section className="px-8 md:px-16 py-24 md:py-32" style={{ background: TEXT }}>
+    <section className="px-5 md:px-16 py-24 md:py-32" style={{ background: TEXT }}>
       <div className="max-w-7xl mx-auto">
         <FadeUp>
           <Label text="From Idea to MVP" />
@@ -608,7 +609,7 @@ function S6Architecture() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="px-8 md:px-16 py-24 md:py-32" style={{ background: BG }}>
+    <section ref={ref} className="px-5 md:px-16 py-24 md:py-32" style={{ background: BG }}>
       <div className="max-w-5xl mx-auto">
         <FadeUp>
           <Label text="Product Architecture" />
@@ -689,7 +690,7 @@ const BIZ_CARDS = [
 
 function S7BusinessModel() {
   return (
-    <section className="px-8 md:px-16 py-20 md:py-28" style={{ background: BG2 }}>
+    <section className="px-5 md:px-16 py-20 md:py-28" style={{ background: BG2 }}>
       <div className="max-w-7xl mx-auto">
         <FadeUp>
           <Label text="Business Model" />
@@ -741,7 +742,7 @@ const OUTCOMES = [
 
 function S8Outcome() {
   return (
-    <section className="px-8 md:px-16 py-24 md:py-32" style={{ background: TEXT }}>
+    <section className="px-5 md:px-16 py-24 md:py-32" style={{ background: TEXT }}>
       <div className="max-w-7xl mx-auto">
         <FadeUp>
           <Label text="Outcome" />

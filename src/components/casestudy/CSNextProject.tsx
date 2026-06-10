@@ -23,7 +23,7 @@ export default function CSNextProject({ next, currentAccent = '#718F6B' }: CSNex
   const [hovered, setHovered] = useState(false);
 
   return (
-    <section className="px-8 md:px-16 py-24 bg-background border-t border-border">
+    <section className="px-5 md:px-16 py-24 bg-background border-t border-border">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <motion.span

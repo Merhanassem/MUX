@@ -28,7 +28,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <span className="text-xs font-body text-white/60 tracking-widest uppercase mb-6 block">
             Let&apos;s work together
@@ -75,7 +75,7 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.35 }}
-          className="text-center space-y-4 mb-20"
+          className="text-center space-y-4 mb-14 md:mb-20"
         >
           <MagneticButton
             href={`/contact${selectedTopic ? `?topic=${encodeURIComponent(selectedTopic)}` : ''}`}
@@ -92,9 +92,9 @@ export default function Contact() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.6 }}
-          className="text-center border-t border-white/10 pt-16"
+          className="text-center border-t border-white/10 pt-10 md:pt-16"
         >
-          <p className="font-display text-3xl md:text-4xl text-white/30 leading-tight">
+          <p className="font-display text-2xl md:text-4xl text-white/30 leading-tight">
             &ldquo;The right question<br />
             is worth more than<br />
             a thousand screens.&rdquo;

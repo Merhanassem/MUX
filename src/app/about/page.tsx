@@ -142,7 +142,7 @@ function ExperienceRow({ e, i }: { e: typeof experience[0]; i: number }) {
         style={{ background: e.accent }}
       />
 
-      <div className="py-8 pl-6 md:pl-8 grid grid-cols-1 md:grid-cols-[180px_1fr_auto] gap-4 md:gap-10 items-start">
+      <div className="py-7 md:py-8 pl-4 md:pl-8 grid grid-cols-1 md:grid-cols-[180px_1fr_auto] gap-3 md:gap-10 items-start">
 
         {/* Left: period + tags */}
         <div className="flex md:flex-col gap-3 md:gap-2">
@@ -211,9 +211,9 @@ function ValueCard({ v, i }: { v: typeof values[0]; i: number }) {
       initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: i * 0.09, ease: [0.16, 1, 0.3, 1] }}
-      className="py-9 border-t border-border grid grid-cols-[48px_1fr] gap-6"
+      className="py-7 md:py-9 border-t border-border grid grid-cols-[40px_1fr] md:grid-cols-[48px_1fr] gap-4 md:gap-6"
     >
-      <span className="font-display text-[2rem] leading-none select-none" style={{ color: '#E5E0D6' }}>{v.n}</span>
+      <span className="font-display text-[1.75rem] md:text-[2rem] leading-none select-none" style={{ color: '#E5E0D6' }}>{v.n}</span>
       <div>
         <h3 className="font-display text-lg md:text-xl text-primary-text mb-2">{v.title}</h3>
         <p className="font-body text-secondary-text leading-relaxed text-sm">{v.body}</p>
@@ -268,7 +268,7 @@ export default function AboutPage() {
 
         {/* ══ HERO ══════════════════════════════════════════════════════════ */}
         <section ref={heroRef} className="min-h-screen flex flex-col justify-center overflow-hidden relative">
-          <motion.div style={{ y: heroY, opacity: heroOpacity }} className="max-w-7xl mx-auto w-full pt-24 pb-16 px-4 md:px-16">
+          <motion.div style={{ y: heroY, opacity: heroOpacity }} className="max-w-7xl mx-auto w-full pt-24 pb-16 px-5 md:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_500px] gap-12 items-center">
 
               {/* ─ Text ─ */}
@@ -367,7 +367,7 @@ export default function AboutPage() {
 
         {/* ══ STATS ═════════════════════════════════════════════════════════ */}
         <section className="border-y border-border bg-background">
-          <div className="max-w-7xl mx-auto px-8 md:px-16 py-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x divide-border">
+          <div className="max-w-7xl mx-auto px-5 md:px-16 py-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x divide-border">
             <Counter to={4} suffix="+" label="Years designing" />
             <Counter to={5}  label="Companies" />
             <Counter to={6}  label="Domains" />
@@ -376,7 +376,7 @@ export default function AboutPage() {
         </section>
 
         {/* ══ INTRO ═════════════════════════════════════════════════════════ */}
-        <section className="px-4 md:px-16 py-16 md:py-28 max-w-7xl mx-auto">
+        <section className="px-5 md:px-16 py-16 md:py-28 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-16 items-start">
             <div className="lg:sticky lg:top-32">
               <ScrollReveal>
@@ -435,7 +435,7 @@ export default function AboutPage() {
         </section>
 
         {/* ══ EXPERIENCE ════════════════════════════════════════════════════ */}
-        <section className="border-t border-border px-4 md:px-16 py-16 md:py-24">
+        <section className="border-t border-border px-5 md:px-16 py-16 md:py-24">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <div className="flex items-end justify-between mb-4">
@@ -461,7 +461,7 @@ export default function AboutPage() {
         </section>
 
         {/* ══ SKILLS + TOOLS ════════════════════════════════════════════════ */}
-        <section className="border-t border-border px-4 md:px-16 py-16 md:py-24 bg-background">
+        <section className="border-t border-border px-5 md:px-16 py-16 md:py-24 bg-background">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <span className="text-xs font-body text-secondary-text tracking-[0.18em] uppercase mb-12 block">
@@ -516,7 +516,7 @@ export default function AboutPage() {
         <DomainMarquee />
 
         {/* ══ VALUES ════════════════════════════════════════════════════════ */}
-        <section className="px-4 md:px-16 py-16 md:py-24 max-w-7xl mx-auto">
+        <section className="px-5 md:px-16 py-16 md:py-24 max-w-7xl mx-auto">
           <ScrollReveal>
             <span className="text-xs font-body text-secondary-text tracking-[0.18em] uppercase mb-4 block">
               How I work
@@ -531,7 +531,7 @@ export default function AboutPage() {
         </section>
 
         {/* ══ COMPETENCIES ══════════════════════════════════════════════════ */}
-        <section className="border-t border-border px-4 md:px-16 py-16 md:py-24 bg-background">
+        <section className="border-t border-border px-5 md:px-16 py-16 md:py-24 bg-background">
           <div className="max-w-7xl mx-auto">
             <ScrollReveal>
               <span className="text-xs font-body text-secondary-text tracking-[0.18em] uppercase mb-12 block">
@@ -565,7 +565,7 @@ export default function AboutPage() {
         <FunFacts />
 
         {/* ══ CTA ═══════════════════════════════════════════════════════════ */}
-        <section className="bg-primary-text px-4 md:px-16 py-20 md:py-32">
+        <section className="bg-primary-text px-5 md:px-16 py-20 md:py-32">
           <div className="max-w-4xl mx-auto text-center">
             <ScrollReveal>
               <span className="text-xs font-body text-white/40 tracking-widest uppercase mb-8 block">

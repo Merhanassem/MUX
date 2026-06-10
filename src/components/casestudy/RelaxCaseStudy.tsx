@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, useInView, useScroll, useMotionValueEvent } from 'framer-motion';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 
@@ -90,7 +91,7 @@ function Phone({
           position: 'relative',
         }}>
           {src ? (
-            <img src={src} alt={alt} className="w-full h-full object-cover object-top" />
+            <Image src={src} alt={alt} fill sizes="(max-width: 768px) 80vw, 420px" className="object-cover object-top" />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center"
               style={{ background: `linear-gradient(160deg, ${accent}12 0%, #0a0a0a 100%)` }}>
@@ -131,7 +132,7 @@ function Phone({
 /* ═══════════════════════════════════════════════════════════════════ */
 function S1Overview() {
   return (
-    <section className="px-8 md:px-16 py-28 md:py-36" style={{ background: BG }}>
+    <section className="px-5 md:px-16 py-28 md:py-36" style={{ background: BG }}>
       <div className="max-w-7xl mx-auto">
         <SectionLabel n="01" label="Product Overview" />
 
@@ -280,7 +281,7 @@ const CHALLENGES = [
 
 function S2Challenge() {
   return (
-    <section className="px-8 md:px-16 py-28 md:py-36" style={{ background: BG2, borderTop: `1px solid ${STROKE}` }}>
+    <section className="px-5 md:px-16 py-28 md:py-36" style={{ background: BG2, borderTop: `1px solid ${STROKE}` }}>
       <div className="max-w-7xl mx-auto">
         <SectionLabel n="02" label="The Challenge" />
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16 items-start">
@@ -338,7 +339,7 @@ function S2Challenge() {
 /* ═══════════════════════════════════════════════════════════════════ */
 function S3Architecture() {
   return (
-    <section className="px-8 md:px-16 py-28 md:py-36" style={{ background: DARK }}>
+    <section className="px-5 md:px-16 py-28 md:py-36" style={{ background: DARK }}>
       <div className="max-w-7xl mx-auto">
         <SectionLabel n="03" label="System Architecture" light />
 
@@ -513,7 +514,7 @@ function S4Customer() {
         background: BG,
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
       }}>
-        <div className="max-w-7xl mx-auto px-8 md:px-16 w-full">
+        <div className="max-w-7xl mx-auto px-5 md:px-16 w-full">
 
           <SectionLabel n="04" label="Customer Experience" />
 
@@ -620,7 +621,7 @@ const SPECIALIST_SCREENS = [
 
 function S5Specialist() {
   return (
-    <section className="px-8 md:px-16 py-28 md:py-36" style={{ background: '#F5EDE8' }}>
+    <section className="px-5 md:px-16 py-28 md:py-36" style={{ background: '#F5EDE8' }}>
       <div className="max-w-7xl mx-auto">
         <SectionLabel n="05" label="Specialist Experience" />
 
@@ -754,7 +755,7 @@ const DRIVER_SCREENS = [
 
 function S6Driver() {
   return (
-    <section className="px-8 md:px-16 py-28 md:py-36" style={{ background: BG }}>
+    <section className="px-5 md:px-16 py-28 md:py-36" style={{ background: BG }}>
       <div className="max-w-7xl mx-auto">
         <SectionLabel n="06" label="Driver Experience" />
 
@@ -855,7 +856,7 @@ const DECISIONS = [
 
 function S7Decisions() {
   return (
-    <section className="px-8 md:px-16 py-28 md:py-36" style={{ background: BG3 }}>
+    <section className="px-5 md:px-16 py-28 md:py-36" style={{ background: BG3 }}>
       <div className="max-w-7xl mx-auto">
         <SectionLabel n="07" label="Key Product Decisions" />
         <ScrollReveal>
@@ -928,7 +929,7 @@ const PALETTE = [
 
 function S8DesignSystem() {
   return (
-    <section className="px-8 md:px-16 py-28 md:py-36" style={{ background: BG }}>
+    <section className="px-5 md:px-16 py-28 md:py-36" style={{ background: BG }}>
       <div className="max-w-7xl mx-auto">
         <SectionLabel n="08" label="Design System" />
 
@@ -1083,7 +1084,7 @@ const TIMELINE_STEPS = [
 
 function S9Timeline() {
   return (
-    <section className="px-8 md:px-16 py-28 md:py-36 overflow-hidden" style={{ background: DARK }}>
+    <section className="px-5 md:px-16 py-28 md:py-36 overflow-hidden" style={{ background: DARK }}>
       <div className="max-w-7xl mx-auto">
         <SectionLabel n="09" label="End-to-End Experience" light />
 
@@ -1194,7 +1195,7 @@ const OUTCOMES = [
 
 function S10Outcome() {
   return (
-    <section className="px-8 md:px-16 py-28 md:py-36" style={{ background: BG }}>
+    <section className="px-5 md:px-16 py-28 md:py-36" style={{ background: BG }}>
       <div className="max-w-7xl mx-auto">
         <SectionLabel n="10" label="Outcome" />
 

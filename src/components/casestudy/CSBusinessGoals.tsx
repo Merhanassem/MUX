@@ -78,7 +78,7 @@ export default function CSBusinessGoals({ accentColor = '#718F6B', cards = DEFAU
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   return (
-    <section className="px-8 md:px-16 py-32 bg-background">
+    <section className="px-5 md:px-16 py-32 bg-background">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
           <span className="text-xs font-body text-secondary-text tracking-[0.14em] uppercase mb-5 block">

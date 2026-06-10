@@ -32,7 +32,7 @@ export default function CSOutcomes({ accentColor = '#718F6B', outcomes = DEFAULT
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section className="px-8 md:px-16 py-32 bg-background">
+    <section className="px-5 md:px-16 py-32 bg-background">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
           <span className="text-xs font-body text-secondary-text tracking-[0.14em] uppercase mb-5 block">

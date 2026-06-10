@@ -89,7 +89,7 @@ function FeatureBlock({ feature, accentColor }: { feature: Feature; accentColor:
       className="relative"
     >
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8 md:px-16 w-full">
+        <div className="max-w-7xl mx-auto px-5 md:px-16 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
             {/* Left — narrative */}
@@ -218,7 +218,7 @@ interface CSFeatureStoryProps {
 export default function CSFeatureStory({ accentColor = '#718F6B', features = DEFAULT_FEATURES }: CSFeatureStoryProps) {
   return (
     <div className="bg-background">
-      <div className="max-w-7xl mx-auto px-8 md:px-16 pt-24 pb-0">
+      <div className="max-w-7xl mx-auto px-5 md:px-16 pt-24 pb-0">
         <ScrollReveal>
           <span className="text-xs font-body text-secondary-text tracking-[0.14em] uppercase mb-5 block">
             06 — Building the Product

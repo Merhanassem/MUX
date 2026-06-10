@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import Image from 'next/image';
 import { motion, useInView, useScroll, useMotionValueEvent } from 'framer-motion';
 
 /* ── Brand tokens ─────────────────────────────────────────────────────────── */
@@ -67,7 +68,7 @@ function BrowserFrame({ src, label, className = '', objectPosition = 'top', obje
         </div>
         <div style={{ aspectRatio, background: BG2, overflow: 'hidden', position: 'relative' }}>
           {src ? (
-            <img src={src} alt="YouMats screen" className="w-full h-full" style={{ objectFit, objectPosition } as React.CSSProperties} />
+            <Image src={src} alt="YouMats screen" fill sizes="(max-width: 768px) 90vw, 800px" style={{ objectFit, objectPosition } as React.CSSProperties} />
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center gap-3">
               <div style={{ width: 44, height: 44, borderRadius: 12, background: `${ACCENT}14`, border: `1px solid ${ACCENT}28`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -97,7 +98,7 @@ function BrowserFrame({ src, label, className = '', objectPosition = 'top', obje
 function S1Ecosystem() {
   return (
     <section style={{ background: BG, padding: '120px 0 100px' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <SectionLabel text="01 — Platform Ecosystem" />
           <h2 style={{ fontSize: 'clamp(40px, 5vw, 64px)', fontWeight: 700, color: TEXT, lineHeight: 1.08, marginBottom: 20 }}>
@@ -215,7 +216,7 @@ const CHALLENGES = [
 function S2Challenge() {
   return (
     <section style={{ background: BG2, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <SectionLabel text="02 — The Challenge" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -263,7 +264,7 @@ const ARCH_MODULES = [
 function S3Architecture() {
   return (
     <section style={{ background: BG, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <SectionLabel text="03 — Commerce Architecture" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -368,7 +369,7 @@ const FEATURES_CUSTOMER = [
 function S4CustomerExperience() {
   return (
     <section style={{ background: BG2, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <SectionLabel text="04 — Customer Experience" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -449,7 +450,7 @@ function S5QuotationExperience() {
   return (
     <div ref={stickyRef} style={{ height: `${QUOTE_STEPS.length * 100}vh` }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden', background: BG, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <div className="max-w-6xl mx-auto px-8 w-full">
+        <div className="max-w-6xl mx-auto px-5 md:px-8 w-full">
           <FadeUp>
             <SectionLabel text="05 — Quotation Experience" />
             <h2 style={{ fontSize: 'clamp(32px, 4vw, 50px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 8 }}>
@@ -517,7 +518,7 @@ function S5QuotationExperience() {
 function S5Gallery() {
   return (
     <section style={{ background: BG, padding: '80px 0 100px' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <p style={{ fontSize: 12, fontFamily: 'monospace', letterSpacing: '0.16em', color: MUTED, marginBottom: 40 }}>
             — QUOTATION SCREENS
@@ -562,7 +563,7 @@ const SERVICE_FLOW = [
 function S6ServiceMarketplace() {
   return (
     <section style={{ background: BG2, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <SectionLabel text="06 — Service Marketplace" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -641,7 +642,7 @@ const VENDOR_MODULES = [
 function S7VendorExperience() {
   return (
     <section style={{ background: BG, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <SectionLabel text="07 — Vendor Experience" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -736,7 +737,7 @@ const DECISIONS = [
 function S8ProductDecisions() {
   return (
     <section style={{ background: BG2, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <SectionLabel text="08 — Key Product Decisions" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -793,7 +794,7 @@ function S9CommerceFlow() {
 
   return (
     <section style={{ background: BG, padding: '100px 0' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <SectionLabel text="09 — End-to-End Commerce Flow" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>
@@ -868,7 +869,7 @@ const OUTCOMES = [
 function S10Outcome() {
   return (
     <section style={{ background: BG2, padding: '100px 0 120px' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-5 md:px-8">
         <FadeUp>
           <SectionLabel text="10 — Outcome" />
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 56px)', fontWeight: 700, color: TEXT, lineHeight: 1.1, marginBottom: 16 }}>

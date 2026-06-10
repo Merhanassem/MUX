@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, useInView, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 
 /* ── Brand tokens ── */
@@ -61,7 +62,7 @@ function BrowserFrame({ src, className = '', objectPosition = 'top' }: { src?: s
       {/* Content */}
       <div style={{ aspectRatio: '16/9', position: 'relative', background: BG2, minHeight: 200 }}>
         {src ? (
-          <img src={src} alt="Dream Cairo screen" className="w-full h-full object-cover" style={{ objectPosition }} />
+          <Image src={src} alt="Dream Cairo screen" fill sizes="(max-width: 768px) 90vw, 900px" className="object-cover" style={{ objectPosition }} />
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center gap-4">
             <div style={{ width: 48, height: 48, borderRadius: 12, background: GOLD + '18', border: `1px solid ${GOLD}30`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -92,7 +93,7 @@ function MobileFrame({ src }: { src?: string | null }) {
     }}>
       <div style={{ aspectRatio: '9/19.5', borderRadius: 20, overflow: 'hidden', background: BG2, position: 'relative' }}>
         {src ? (
-          <img src={src} alt="Mobile" className="w-full h-full object-cover object-top" />
+          <Image src={src} alt="Mobile" fill sizes="(max-width: 768px) 80vw, 420px" className="object-cover object-top" />
         ) : (
           <div className="w-full h-full flex items-center justify-center"
             style={{ background: `linear-gradient(160deg, ${GOLD}10 0%, #050300 100%)` }}>
@@ -125,7 +126,7 @@ function S1TheExperience() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section ref={ref} className="relative px-8 md:px-16 py-28 md:py-36 overflow-hidden" style={{ background: BG }}>
+    <section ref={ref} className="relative px-5 md:px-16 py-28 md:py-36 overflow-hidden" style={{ background: BG }}>
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none" style={{
         background: `radial-gradient(ellipse 70% 50% at 50% 0%, ${GOLD}0A, transparent 70%)`,
@@ -226,7 +227,7 @@ function S2HowItWorks() {
           background: `radial-gradient(ellipse 60% 60% at 30% 50%, ${GOLD}06, transparent)`,
         }} />
 
-        <div className="max-w-7xl mx-auto px-8 md:px-16 w-full relative">
+        <div className="max-w-7xl mx-auto px-5 md:px-16 w-full relative">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
 
             {/* Left — active step */}
@@ -316,7 +317,7 @@ function S3Ecosystem() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="px-8 md:px-16 py-24 md:py-32 relative" style={{ background: BG }}>
+    <section ref={ref} className="px-5 md:px-16 py-24 md:py-32 relative" style={{ background: BG }}>
       <div className="absolute inset-0 pointer-events-none" style={{
         background: `radial-gradient(ellipse 50% 60% at 50% 50%, ${GOLD}06, transparent)`,
       }} />
@@ -375,7 +376,7 @@ function S3Ecosystem() {
 ══════════════════════════════════════════════════════════════════════ */
 function S4Discovery() {
   return (
-    <section className="px-8 md:px-16 py-24 md:py-32" style={{ background: BG2 }}>
+    <section className="px-5 md:px-16 py-24 md:py-32" style={{ background: BG2 }}>
       <div className="max-w-7xl mx-auto">
         <FadeUp>
           <GoldLabel text="Discovery & Campaigns" />
@@ -428,7 +429,7 @@ function S5PurchaseExperience() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section ref={ref} className="px-8 md:px-16 py-24 md:py-32 relative" style={{ background: BG }}>
+    <section ref={ref} className="px-5 md:px-16 py-24 md:py-32 relative" style={{ background: BG }}>
       <div className="absolute inset-0 pointer-events-none" style={{
         background: `radial-gradient(ellipse 60% 40% at 50% 100%, ${GOLD}06, transparent)`,
       }} />
@@ -498,7 +499,7 @@ const TRUST_CARDS = [
 
 function S6BuildingTrust() {
   return (
-    <section className="px-8 md:px-16 py-24 md:py-32" style={{ background: BG2 }}>
+    <section className="px-5 md:px-16 py-24 md:py-32" style={{ background: BG2 }}>
       <div className="max-w-7xl mx-auto">
         <FadeUp>
           <GoldLabel text="Building Trust" />
@@ -535,7 +536,7 @@ function S6BuildingTrust() {
 ══════════════════════════════════════════════════════════════════════ */
 function S7Responsive() {
   return (
-    <section className="px-8 md:px-16 py-24 md:py-32 relative" style={{ background: BG }}>
+    <section className="px-5 md:px-16 py-24 md:py-32 relative" style={{ background: BG }}>
       <div className="absolute inset-0 pointer-events-none" style={{
         background: `radial-gradient(ellipse 80% 40% at 50% 50%, ${GOLD}05, transparent)`,
       }} />
@@ -567,7 +568,7 @@ function S7Responsive() {
                 overflow: 'hidden',
               }}>
                 <div style={{ aspectRatio: '9/19.5', background: BG2, position: 'relative', overflow: 'hidden' }}>
-                  <img src="/dc-homepage-mobile.png" alt="Mobile view" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+                  <Image src="/dc-homepage-mobile.png" alt="Mobile view" fill sizes="(max-width: 768px) 80vw, 420px" style={{ objectFit: 'cover', objectPosition: 'top' }} />
                   <div style={{ position: 'absolute', top: 5, left: '50%', transform: 'translateX(-50%)', width: 32, height: 7, background: '#000', borderRadius: 999 }} />
                 </div>
               </div>
@@ -616,7 +617,7 @@ const DECISIONS = [
 
 function S8ProductDecisions() {
   return (
-    <section className="px-8 md:px-16 py-24 md:py-32" style={{ background: BG2 }}>
+    <section className="px-5 md:px-16 py-24 md:py-32" style={{ background: BG2 }}>
       <div className="max-w-7xl mx-auto">
         <FadeUp>
           <GoldLabel text="Key Product Decisions" />
@@ -677,7 +678,7 @@ function S9BusinessModel() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section ref={ref} className="px-8 md:px-16 py-24 md:py-32 relative" style={{ background: BG }}>
+    <section ref={ref} className="px-5 md:px-16 py-24 md:py-32 relative" style={{ background: BG }}>
       <div className="absolute inset-0 pointer-events-none" style={{
         background: `radial-gradient(ellipse 60% 50% at 50% 50%, ${GOLD}06, transparent)`,
       }} />
@@ -731,7 +732,7 @@ const OUTCOMES = [
 
 function S10Outcome() {
   return (
-    <section className="px-8 md:px-16 py-24 md:py-32" style={{ background: BG2 }}>
+    <section className="px-5 md:px-16 py-24 md:py-32" style={{ background: BG2 }}>
       <div className="max-w-7xl mx-auto">
         <FadeUp>
           <GoldLabel text="Outcome" />

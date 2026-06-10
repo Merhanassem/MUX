@@ -89,7 +89,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       {/* Featured badge */}
       {service.featured && (
         <div
-          className="absolute top-6 right-6 text-xs font-body px-3 py-1.5 rounded-full"
+          className="absolute top-4 right-4 md:top-6 md:right-6 text-[10px] md:text-xs font-body px-2.5 py-1 md:px-3 md:py-1.5 rounded-full whitespace-nowrap"
           style={{ background: service.accent + '20', color: service.accent, border: `1px solid ${service.accent}40` }}
         >
           Most requested

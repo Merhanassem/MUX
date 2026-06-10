@@ -101,7 +101,7 @@ export default function CSScreens({ accentColor = '#718F6B', screens = DEFAULT_S
 
   return (
     <section className="py-24 bg-primary-text overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 md:px-16">
+      <div className="max-w-7xl mx-auto px-5 md:px-16">
         <ScrollReveal>
           <span className="text-xs font-body text-white/30 tracking-[0.14em] uppercase mb-5 block">
             08 — Selected Screens

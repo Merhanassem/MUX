@@ -124,7 +124,7 @@ export default function CSEcosystem({ accentColor = '#718F6B', nodes = DEFAULT_N
 
   return (
     <section className="py-32 bg-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 md:px-16">
+      <div className="max-w-7xl mx-auto px-5 md:px-16">
         <ScrollReveal>
           <span className="text-xs font-body text-secondary-text tracking-[0.14em] uppercase mb-5 block">
             04 — Product Ecosystem

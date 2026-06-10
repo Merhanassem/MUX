@@ -108,7 +108,7 @@ export default function ContactPage() {
       <main className="bg-background min-h-screen">
 
         {/* ── Hero ── */}
-        <section className="pt-32 md:pt-40 pb-12 md:pb-16 px-4 md:px-16 max-w-7xl mx-auto">
+        <section className="pt-32 md:pt-40 pb-12 md:pb-16 px-5 md:px-16 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -132,7 +132,7 @@ export default function ContactPage() {
         </section>
 
         {/* ── Form + Sidebar ── */}
-        <section className="px-4 md:px-16 pb-20 md:pb-32 max-w-7xl mx-auto">
+        <section className="px-5 md:px-16 pb-20 md:pb-32 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 lg:gap-20">
 
             {/* ── Form ── */}
@@ -176,7 +176,7 @@ export default function ContactPage() {
                       initial={{ opacity: 0, y: 24 }}
                       animate={formInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.6 }}
-                      className="bg-[#F7F5F1] border border-border rounded-2xl p-7"
+                      className="bg-[#F7F5F1] border border-border rounded-2xl p-6 md:p-7"
                     >
                       <p className="text-xs font-body text-secondary-text tracking-widest uppercase mb-1">Step 01</p>
                       <p className="font-display text-xl text-primary-text mb-5">What best describes your situation?</p>
@@ -208,7 +208,7 @@ export default function ContactPage() {
                       initial={{ opacity: 0, y: 24 }}
                       animate={formInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.6, delay: 0.1 }}
-                      className="bg-[#F7F5F1] border border-border rounded-2xl p-7 space-y-6"
+                      className="bg-[#F7F5F1] border border-border rounded-2xl p-6 md:p-7 space-y-6"
                     >
                       <div>
                         <p className="text-xs font-body text-secondary-text tracking-widest uppercase mb-1">Step 02</p>
@@ -270,7 +270,7 @@ export default function ContactPage() {
                       initial={{ opacity: 0, y: 24 }}
                       animate={formInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.6, delay: 0.18 }}
-                      className="bg-[#F7F5F1] border border-border rounded-2xl p-7 space-y-6"
+                      className="bg-[#F7F5F1] border border-border rounded-2xl p-6 md:p-7 space-y-6"
                     >
                       <div>
                         <p className="text-xs font-body text-secondary-text tracking-widest uppercase mb-1">Step 03</p>
@@ -430,7 +430,7 @@ export default function ContactPage() {
               <div className="sticky top-32 space-y-6">
 
                 {/* Availability card */}
-                <div className="bg-primary-text text-background rounded-2xl p-7">
+                <div className="bg-primary-text text-background rounded-2xl p-6 md:p-7">
                   <div className="flex items-center gap-2 mb-4">
                     <motion.div
                       className="w-2.5 h-2.5 rounded-full bg-[#A8D5A2]"
@@ -448,14 +448,14 @@ export default function ContactPage() {
                 </div>
 
                 {/* Response time */}
-                <div className="bg-[#F7F5F1] border border-border rounded-2xl p-7">
+                <div className="bg-[#F7F5F1] border border-border rounded-2xl p-6 md:p-7">
                   <p className="text-[10px] font-body text-secondary-text tracking-widest uppercase mb-3">Response time</p>
                   <p className="font-display text-4xl text-primary-text mb-2">48 hrs</p>
                   <p className="font-body text-sm text-secondary-text leading-relaxed">Usually much faster. I check messages every day.</p>
                 </div>
 
                 {/* Direct links */}
-                <div className="bg-[#F7F5F1] border border-border rounded-2xl p-7">
+                <div className="bg-[#F7F5F1] border border-border rounded-2xl p-6 md:p-7">
                   <p className="text-[10px] font-body text-secondary-text tracking-widest uppercase mb-5">Or reach out directly</p>
                   <div className="space-y-3">
                     {[
@@ -468,10 +468,10 @@ export default function ContactPage() {
                         href={link.href}
                         target={link.href.startsWith('http') ? '_blank' : undefined}
                         rel="noopener noreferrer"
-                        className="flex items-center justify-between group cursor-none py-1"
+                        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-0.5 sm:gap-2 group cursor-none py-1.5"
                       >
-                        <span className="text-xs font-body text-secondary-text">{link.label}</span>
-                        <span className="text-xs font-body text-secondary-text group-hover:text-pink-brand transition-colors duration-200">
+                        <span className="text-[10px] sm:text-xs font-body text-secondary-text tracking-wider uppercase sm:normal-case sm:tracking-normal flex-shrink-0">{link.label}</span>
+                        <span className="text-xs font-body text-primary-text sm:text-secondary-text group-hover:text-pink-brand transition-colors duration-200 truncate">
                           {link.value} →
                         </span>
                       </a>

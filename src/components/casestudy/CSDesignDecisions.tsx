@@ -373,7 +373,7 @@ export default function CSDesignDecisions({ accentColor = '#718F6B', decisions =
 
   return (
     <section className="bg-background">
-      <div className="px-8 md:px-16 pt-24 pb-16 max-w-7xl mx-auto">
+      <div className="px-5 md:px-16 pt-24 pb-16 max-w-7xl mx-auto">
         <ScrollReveal>
           <span className="text-xs font-body text-secondary-text tracking-[0.14em] uppercase mb-5 block">
             07 — Design Decisions
@@ -393,7 +393,7 @@ export default function CSDesignDecisions({ accentColor = '#718F6B', decisions =
         className="relative"
       >
         <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-          <div className="max-w-5xl mx-auto px-8 md:px-16 w-full">
+          <div className="max-w-5xl mx-auto px-5 md:px-16 w-full">
             <div className="flex flex-col gap-2">
               {decisions.map((decision, i) => {
                 const isActive = i === activeIndex;

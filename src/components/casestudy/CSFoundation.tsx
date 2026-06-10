@@ -116,7 +116,7 @@ export default function CSFoundation({ accentColor = '#718F6B', chapters = DEFAU
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="px-8 md:px-16 py-24 bg-background">
+    <section className="px-5 md:px-16 py-24 bg-background">
       <div className="max-w-7xl mx-auto">
         <motion.div
           ref={ref}

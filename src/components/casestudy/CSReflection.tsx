@@ -65,7 +65,7 @@ interface CSReflectionProps {
 
 export default function CSReflection({ accentColor = '#718F6B', items = DEFAULT_REFLECTION, designerNote }: CSReflectionProps) {
   return (
-    <section className="px-8 md:px-16 py-32 bg-background border-t border-border">
+    <section className="px-5 md:px-16 py-32 bg-background border-t border-border">
       <div className="max-w-5xl mx-auto">
         <ScrollReveal>
           <span className="text-xs font-body text-secondary-text tracking-[0.14em] uppercase mb-5 block">

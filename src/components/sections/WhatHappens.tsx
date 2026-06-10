@@ -1,8 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+
+/** True on touch devices (no hover) — used to always reveal hover-gated content. */
+function useIsTouch() {
+  const [isTouch, setIsTouch] = useState(false);
+  useEffect(() => {
+    setIsTouch(window.matchMedia('(hover: none)').matches);
+  }, []);
+  return isTouch;
+}
 
 const cards = [
   {
@@ -41,15 +50,17 @@ const cards = [
 
 function Card({ card, index }: { card: typeof cards[0]; index: number }) {
   const [hovered, setHovered] = useState(false);
+  const isTouch = useIsTouch();
+  const open = hovered || isTouch;
 
   return (
     <ScrollReveal delay={index * 0.1}>
       <motion.div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="relative border border-border rounded-2xl md:rounded-3xl p-5 md:p-10 overflow-hidden cursor-none group"
+        className="relative border border-border rounded-2xl md:rounded-3xl p-6 md:p-10 overflow-hidden cursor-none group"
         animate={{
-          borderColor: hovered ? card.accent + '60' : '#E5E0D6',
+          borderColor: open ? card.accent + '60' : '#E5E0D6',
         }}
         transition={{ duration: 0.3 }}
       >
@@ -57,7 +68,7 @@ function Card({ card, index }: { card: typeof cards[0]; index: number }) {
         <motion.div
           className="absolute inset-0 rounded-3xl"
           animate={{
-            opacity: hovered ? 1 : 0,
+            opacity: open ? 1 : 0,
             backgroundColor: card.accent + '08',
           }}
           transition={{ duration: 0.3 }}
@@ -67,29 +78,29 @@ function Card({ card, index }: { card: typeof cards[0]; index: number }) {
         <motion.div
           className="absolute top-0 right-0 w-24 h-24 rounded-bl-full"
           animate={{
-            opacity: hovered ? 0.15 : 0,
+            opacity: open ? 0.15 : 0,
             backgroundColor: card.accent,
           }}
           transition={{ duration: 0.4 }}
         />
 
         <div className="relative z-10">
-          <span className="text-3xl mb-6 block">{card.icon}</span>
+          <span className="text-2xl md:text-3xl mb-4 md:mb-6 block">{card.icon}</span>
 
-          <p className="font-display text-xl md:text-3xl text-secondary-text mb-2">
+          <p className="font-display text-xl md:text-3xl text-secondary-text mb-1.5 md:mb-2">
             {card.question}
           </p>
           <motion.p
             className="font-display text-xl md:text-3xl font-medium"
             style={{ color: card.accent }}
-            animate={{ x: hovered ? 4 : 0 }}
+            animate={{ x: open ? 4 : 0 }}
             transition={{ duration: 0.3 }}
           >
             {card.answer}
           </motion.p>
 
           <AnimatePresence>
-            {hovered && (
+            {open && (
               <motion.p
                 initial={{ opacity: 0, y: 8, height: 0 }}
                 animate={{ opacity: 1, y: 0, height: 'auto' }}

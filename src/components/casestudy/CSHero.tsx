@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 import MediaPlaceholder from '@/components/ui/MediaPlaceholder';
 
 interface Meta { label: string; value: string }
@@ -32,7 +33,7 @@ export default function CSHero({ title, summary, accentColor, category, meta, co
     <section ref={ref} className="relative min-h-screen flex flex-col justify-end pb-0 overflow-hidden bg-background">
       {/* Content */}
       <motion.div
-        className="relative z-10 px-8 md:px-16 pt-36 pb-16 max-w-7xl mx-auto w-full"
+        className="relative z-10 px-5 md:px-16 pt-28 md:pt-36 pb-12 md:pb-16 max-w-7xl mx-auto w-full"
         style={{ y: contentY, opacity }}
       >
         {/* Category pill */}
@@ -51,7 +52,7 @@ export default function CSHero({ title, summary, accentColor, category, meta, co
 
         {/* Title */}
         <motion.h1
-          className="font-display text-[3.2rem] md:text-[5.5rem] lg:text-[7rem] leading-[0.95] text-primary-text mb-8 max-w-5xl"
+          className="font-display text-[2.6rem] md:text-[5.5rem] lg:text-[7rem] leading-[0.95] text-primary-text mb-6 md:mb-8 max-w-5xl"
           {...stagger(1)}
         >
           {title}
@@ -59,7 +60,7 @@ export default function CSHero({ title, summary, accentColor, category, meta, co
 
         {/* Summary */}
         <motion.p
-          className="font-body text-lg md:text-xl text-secondary-text leading-relaxed max-w-2xl mb-14"
+          className="font-body text-base md:text-xl text-secondary-text leading-relaxed max-w-2xl mb-10 md:mb-14"
           {...stagger(2)}
         >
           {summary}
@@ -90,11 +91,11 @@ export default function CSHero({ title, summary, accentColor, category, meta, co
           initial={{ opacity: 0, scale: 1.04 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-8 md:mx-16 mb-0 rounded-t-3xl overflow-hidden"
-          style={{ height: '58vh' }}
+          className="relative mx-5 md:mx-16 mb-0 rounded-t-3xl overflow-hidden"
+          style={{ height: '52vh' }}
         >
           {coverImage ? (
-            <img src={coverImage} alt={title} className="w-full h-full object-cover" />
+            <Image src={coverImage} alt={title} fill priority quality={85} sizes="100vw" className="object-cover" />
           ) : (
             <MediaPlaceholder
               type="image"

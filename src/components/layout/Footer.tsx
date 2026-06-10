@@ -34,8 +34,8 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border px-8 md:px-16 py-10">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="border-t border-border px-5 md:px-16 py-10 md:py-10">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-7 md:gap-6">
         <Image src="/mux-logo.svg" alt="MUX" width={52} height={22} />
 
         <p className="text-secondary-text text-xs font-body text-center tracking-wide">
@@ -50,7 +50,7 @@ export default function Footer() {
               aria-label={`${s.label} (opens in new tab)`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-secondary-text hover:text-primary-text transition-colors duration-200 cursor-none inline-flex items-center justify-center w-9 h-9 rounded-lg"
+              className="text-secondary-text hover:text-primary-text transition-colors duration-200 cursor-none inline-flex items-center justify-center w-11 h-11 md:w-9 md:h-9 rounded-lg"
             >
               {s.icon}
             </a>
