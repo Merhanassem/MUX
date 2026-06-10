@@ -180,9 +180,13 @@ html {
 }
 
 /* Section padding — fluid vertical rhythm that scales smoothly
-   from small phones (~64px) up to desktop (120px). */
+   from small phones (~64px) up to desktop (120px).
+   IMPORTANT: only set vertical padding. Using the `padding` shorthand here
+   would zero out horizontal padding and override the px-5/px-16 gutters
+   (this rule is declared after Tailwind utilities, so it wins on a tie). */
 .section-padding {
-  padding: clamp(64px, 11vw, 120px) 0;
+  padding-top: clamp(64px, 11vw, 120px);
+  padding-bottom: clamp(64px, 11vw, 120px);
 }
 
 @media (max-width: 768px) {
