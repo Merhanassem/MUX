@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { projects as allProjects } from '@/lib/data/projects';
 const projects = allProjects.filter(p => p.coverImage);
 import MediaPlaceholder from '@/components/ui/MediaPlaceholder';
@@ -39,13 +40,21 @@ const ProjectCard = memo(function ProjectCard({
       >
         <div className="relative overflow-hidden rounded-3xl mb-6">
           {project.coverImage ? (
-            <motion.img
-              src={project.coverImage}
-              alt={project.title}
-              className="w-full h-auto object-cover"
+            <motion.div
+              className="relative w-full aspect-[16/9]"
               animate={{ scale: isActive ? 1 : 1.04 }}
               transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
-            />
+            >
+              <Image
+                src={project.coverImage}
+                alt={project.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 90vw, 980px"
+                priority={index === 0}
+                quality={85}
+              />
+            </motion.div>
           ) : (
             <MediaPlaceholder
               type="image"

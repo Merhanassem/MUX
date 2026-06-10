@@ -39,10 +39,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
+        {/* Preload the font CSS so it starts fetching ASAP */}
+        <link
+          rel="preload"
+          as="style"
+          href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap"
+        />
+        {/* Non-render-blocking: load as print, swap to all once loaded */}
         <link
           rel="stylesheet"
           href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap"
+          media="print"
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onLoad={"this.media='all'" as any}
         />
+        <noscript>
+          <link
+            rel="stylesheet"
+            href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap"
+          />
+        </noscript>
       </head>
       <body className="bg-background text-primary-text antialiased">
         <script

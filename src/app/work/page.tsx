@@ -6,6 +6,7 @@ import {
   useMotionValueEvent, AnimatePresence,
   useMotionValue, useSpring,
 } from 'framer-motion';
+import Image from 'next/image';
 import { projects as allProjects } from '@/lib/data/projects';
 
 import Header from '@/components/layout/Header';
@@ -238,12 +239,14 @@ function ProjectScene({ project, isActive }: { project: typeof projects[0]; isAc
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           style={{ position: 'absolute', inset: 0 }}>
           {project.coverImage
-            ? <img
+            ? <Image
                 src={project.coverImage}
                 alt={`${project.title} — ${a.industry} case study cover`}
-                loading={isActive ? 'eager' : 'lazy'}
-                decoding="async"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                fill
+                priority={isActive}
+                quality={85}
+                sizes="100vw"
+                style={{ objectFit: 'cover', objectPosition: 'center top' }}
               />
             : <div style={{ width: '100%', height: '100%', background: `linear-gradient(145deg, ${a.glow}50 0%, #06060a 100%)` }} />}
         </motion.div>
