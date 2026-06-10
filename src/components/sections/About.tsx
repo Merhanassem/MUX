@@ -34,25 +34,25 @@ export default function About() {
           </span>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
 
           {/* ── Left: Text ── */}
           <div>
             <ScrollReveal>
-              <h2 className="font-display text-[2rem] md:text-[3.5rem] leading-tight text-primary-text mb-6 md:mb-8">
+              <h2 className="font-display text-[1.65rem] md:text-[3.5rem] leading-tight text-primary-text mb-5 md:mb-8">
                 I&apos;m a product designer who thinks in{' '}
                 <span className="text-pink-brand">outcomes</span>, not outputs.
               </h2>
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
-              <p className="font-body text-secondary-text leading-relaxed mb-6">
+              <p className="font-body text-secondary-text leading-relaxed text-sm md:text-base mb-5 md:mb-6">
                 I work with startups and scale-ups to figure out what&apos;s worth building — and then build it well. That usually means more time in the problem space than most designers are comfortable with, and a lot of honest conversations before any screens get made.
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={0.15}>
-              <p className="font-body text-secondary-text leading-relaxed mb-10">
+              <p className="font-body text-secondary-text leading-relaxed text-sm md:text-base mb-8 md:mb-10">
                 I care about clarity, craft, and the tiny details that make the difference between a product people tolerate and one they actually enjoy using.
               </p>
             </ScrollReveal>
@@ -129,7 +129,7 @@ export default function About() {
 
                 {/* Floating status */}
                 <motion.div
-                  className="absolute -top-3 -right-3 md:-top-4 md:-right-4 bg-pink-brand rounded-2xl p-3 md:p-4 shadow-lg"
+                  className="absolute -top-3 right-2 md:-top-4 md:-right-4 bg-pink-brand rounded-2xl p-3 md:p-4 shadow-lg"
                   animate={{ rotate: [0, 4, -3, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
                 >

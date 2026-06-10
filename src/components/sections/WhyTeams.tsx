@@ -50,7 +50,7 @@ export default function WhyTeams() {
     <section className="section-padding px-5 md:px-16 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <ScrollReveal>
-          <div className="mb-20">
+          <div className="mb-10 md:mb-20">
             <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
               The real reason
             </span>
@@ -68,7 +68,7 @@ export default function WhyTeams() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-background p-10 md:p-12 group cursor-none"
+              className="bg-background p-6 md:p-12 group cursor-none"
             >
               <div className="flex items-start gap-6 mb-4">
                 <div>
@@ -92,7 +92,7 @@ export default function WhyTeams() {
 
         {/* Not list */}
         <ScrollReveal>
-          <div className="border border-border rounded-3xl p-10 md:p-12">
+          <div className="border border-border rounded-2xl md:rounded-3xl p-6 md:p-12">
             <h3 className="font-display text-2xl text-primary-text mb-8">
               What I&apos;m not —
             </h3>
