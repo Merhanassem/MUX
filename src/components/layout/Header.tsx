@@ -19,7 +19,10 @@ export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === '/';
 
-  useEffect(() => { setMobileOpen(false); }, [pathname]);
+  useEffect(() => {
+    setMobileOpen(false);
+    setHidden(false); // always show nav on page change
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -32,8 +35,18 @@ export default function Header() {
 
     const onScroll = () => {
       const current = window.scrollY;
+      const delta = current - last;
+
+      // Ignore micro-jitter — only react to intentional scrolls (>4px)
+      if (Math.abs(delta) < 4) return;
+
       // Hide on scroll down (past 80px), show on scroll up
-      setHidden(current > last && current > 80);
+      if (current > 80) {
+        setHidden(delta > 0);
+      } else {
+        setHidden(false);
+      }
+
       setScrollY(current);
       last = current;
     };
