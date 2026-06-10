@@ -2,6 +2,8 @@
 
 import { notFound } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { projects as allProjects } from '@/lib/data/projects';
 
 // Only cycle through projects that have a real cover (same set shown on /work)
@@ -28,6 +30,35 @@ const YouMatsCaseStudy  = dynamic(() => import('@/components/casestudy/YouMatsCa
 const CashCaseStudy     = dynamic(() => import('@/components/casestudy/CashCaseStudy'),      { ssr: false });
 const AnimapCaseStudy   = dynamic(() => import('@/components/casestudy/AnimapCaseStudy'),    { ssr: false });
 
+function BackButton() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 80);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.a
+          href="/work"
+          initial={{ opacity: 0, x: -12 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -12 }}
+          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed bottom-8 left-6 z-50 flex items-center gap-2 bg-background/90 border border-border text-primary-text text-sm font-body font-medium px-4 py-2.5 rounded-full shadow-sm hover:bg-primary-text hover:text-background hover:border-primary-text transition-colors duration-200 cursor-none backdrop-blur-sm"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M19 12H5M12 5l-7 7 7 7" />
+          </svg>
+          All work
+        </motion.a>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export default function CaseStudy({ params }: { params: { slug: string } }) {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) notFound();
@@ -46,6 +77,7 @@ export default function CaseStudy({ params }: { params: { slug: string } }) {
   return (
     <>
       <CustomCursor />
+      <BackButton />
       <Header />
       <main className="bg-background">
 

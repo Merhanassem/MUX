@@ -20,16 +20,16 @@ const ProjectCard = memo(function ProjectCard({
 }) {
   const isActive = index === activeIndex;
   const distance = Math.abs(index - activeIndex);
-  const scale = isActive ? 1 : distance === 1 ? 0.82 : 0.72;
+  const scale = isActive ? 1 : distance === 1 ? 0.84 : 0.74;
   const opacity = 1;
 
   return (
     <motion.div
       ref={cardRef}
       className="relative flex-shrink-0 cursor-none"
-      style={{ width: 'min(980px, 90vw)', zIndex: isActive ? 10 : 1, transformOrigin: 'center center' }}
+      style={{ width: 'min(980px, 90vw)', zIndex: isActive ? 10 : 1, transformOrigin: 'center center', scrollSnapAlign: 'center' }}
       animate={{ scale, opacity }}
-      transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ duration: 0.45, ease: [0.25, 1, 0.35, 1] }}
     >
       <a
         href={`/work/${project.slug}`}
@@ -113,7 +113,7 @@ const ProjectCard = memo(function ProjectCard({
 
         <motion.div
           animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 8 }}
-          transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+          transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
         >
           <div className="flex items-start justify-between gap-4 mb-2">
             <h3 className="font-display text-2xl text-primary-text">{project.title}</h3>
@@ -140,47 +140,30 @@ export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeIndexRef = useRef(0);
   const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const isSnapping = useRef(false);
 
+  // Update active card after scroll settles — no programmatic snap, CSS handles that
   const getNearestIndex = useCallback(() => {
     const container = containerRef.current;
     if (!container) return 0;
-    const centerX = container.getBoundingClientRect().left + container.clientWidth / 2;
+    const centerX = container.scrollLeft + container.clientWidth / 2;
     let closest = 0;
     let minDist = Infinity;
     cardRefs.current.forEach((card, i) => {
       if (!card) return;
-      const rect = card.getBoundingClientRect();
-      const dist = Math.abs(rect.left + rect.width / 2 - centerX);
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const dist = Math.abs(cardCenter - centerX);
       if (dist < minDist) { minDist = dist; closest = i; }
     });
     return closest;
   }, []);
 
-  const snapToIndex = useCallback((i: number) => {
-    const container = containerRef.current;
-    const card = cardRefs.current[i];
-    if (!container || !card) return;
-    isSnapping.current = true;
-    const containerRect = container.getBoundingClientRect();
-    const cardRect = card.getBoundingClientRect();
-    const target = container.scrollLeft + (cardRect.left + cardRect.width / 2 - containerRect.left) - container.clientWidth / 2;
-    container.scrollTo({ left: target, behavior: 'smooth' });
-    setTimeout(() => { isSnapping.current = false; }, 500);
-  }, []);
-
   const handleScroll = useCallback(() => {
-    if (isSnapping.current) return;
     if (settleTimer.current) clearTimeout(settleTimer.current);
     settleTimer.current = setTimeout(() => {
-      const idx = getNearestIndex();
-      activeIndexRef.current = idx;
-      setActiveIndex(idx);
-      snapToIndex(idx);
-    }, 120);
-  }, [getNearestIndex, snapToIndex]);
+      setActiveIndex(getNearestIndex());
+    }, 80);
+  }, [getNearestIndex]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -192,12 +175,14 @@ export default function Projects() {
     };
   }, [handleScroll]);
 
+  // Arrow / dot nav — scroll the card into view, CSS snap does the rest
   const scrollTo = useCallback((i: number) => {
     const clamped = Math.max(0, Math.min(projects.length - 1, i));
-    activeIndexRef.current = clamped;
     setActiveIndex(clamped);
-    snapToIndex(clamped);
-  }, [snapToIndex]);
+    cardRefs.current[clamped]?.scrollIntoView({
+      behavior: 'smooth', block: 'nearest', inline: 'center',
+    });
+  }, []);
 
   return (
     <section id="work" className="section-padding bg-background overflow-hidden">
@@ -208,7 +193,7 @@ export default function Projects() {
               <span className="text-xs font-body text-secondary-text tracking-widest uppercase mb-4 block">
                 Selected work
               </span>
-              <h2 className="font-display text-[2rem] md:text-[3.5rem] leading-tight text-primary-text">
+              <h2 className="font-display text-[1.6rem] md:text-[3rem] leading-tight text-primary-text">
                 Products I&apos;ve<br />helped shape
               </h2>
             </div>
@@ -234,6 +219,9 @@ export default function Projects() {
           paddingRight: 'max(2rem, calc((100vw - 80rem) / 2 + 4rem))',
           scrollbarWidth: 'none',
           WebkitOverflowScrolling: 'touch',
+          overscrollBehaviorX: 'contain',
+          touchAction: 'pan-x',
+          scrollSnapType: 'x mandatory',
         } as React.CSSProperties}
       >
         {projects.map((project, i) => (

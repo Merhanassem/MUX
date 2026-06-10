@@ -8,7 +8,6 @@ const SmoothScroll      = dynamic(() => import('@/components/ui/SmoothScroll'), 
 const ScrollVideoIntro  = dynamic(() => import('@/components/ui/ScrollVideoIntro'),  { ssr: false });
 const WhatHappens       = dynamic(() => import('@/components/sections/WhatHappens'), { ssr: false });
 const Projects          = dynamic(() => import('@/components/sections/Projects'),     { ssr: false });
-const FunProjects       = dynamic(() => import('@/components/sections/FunProjects'), { ssr: false });
 const HowIWork          = dynamic(() => import('@/components/sections/HowIThink'),   { ssr: false });
 const WhyTeams          = dynamic(() => import('@/components/sections/WhyTeams'),    { ssr: false });
 const About             = dynamic(() => import('@/components/sections/About'),       { ssr: false });
@@ -25,7 +24,6 @@ export default function Home() {
         <ScrollVideoIntro />
         <WhatHappens />
         <Projects />
-        <FunProjects />
         <Services />
         <HowIWork />
         <WhyTeams />

@@ -364,24 +364,30 @@ function ProjectScene({ project, isActive }: { project: typeof projects[0]; isAc
    HORIZONTAL SHOWCASE — wheel-snap: one scroll = one project
 ══════════════════════════════════════════════════════════════════════════════ */
 function HorizontalShowcase() {
-  const [winW, setWinW] = useState(0);
+  const [winW, setWinW] = useState(() => typeof window !== 'undefined' ? window.innerWidth : 1440);
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Delta accumulator — advances only when user scrolls past threshold
   const deltaAccRef = useRef(0);
-  const animatingRef = useRef(false); // true while spring is settling
+  // Lock on mount so accidental scroll during page-in animation is ignored
+  const animatingRef = useRef(true);
 
   useEffect(() => {
+    // Release the mount lock after the page-in animation completes
+    const t = setTimeout(() => { animatingRef.current = false; }, 700);
     setWinW(window.innerWidth);
     const onResize = () => setWinW(window.innerWidth);
     window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('resize', onResize);
+    };
   }, []);
 
   const rawX = useMotionValue(0);
-  const x = useSpring(rawX, { stiffness: 100, damping: 20, mass: 0.9 });
+  const x = useSpring(rawX, { stiffness: 180, damping: 28, mass: 0.6 });
   const progress = useMotionValue(0);
 
   const goTo = (idx: number) => {
@@ -393,7 +399,7 @@ function HorizontalShowcase() {
     progress.set(clamped / (projects.length - 1));
     // Lock further advances until spring settles (~600 ms)
     animatingRef.current = true;
-    setTimeout(() => { animatingRef.current = false; deltaAccRef.current = 0; }, 650);
+    setTimeout(() => { animatingRef.current = false; deltaAccRef.current = 0; }, 450);
   };
 
   useEffect(() => {
