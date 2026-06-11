@@ -74,7 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             sameAs: [
               'https://www.linkedin.com/in/merhan-assem-53040a231/',
               'https://www.behance.net/merhanassem2',
-              'https://www.instagram.com/merhanassim',
+              'https://www.instagram.com/mux.design.svg',
             ],
             address: { '@type': 'PostalAddress', addressLocality: 'Cairo', addressCountry: 'EG' },
           }) }}
