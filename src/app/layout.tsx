@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import CursorProvider from '@/components/ui/CursorProvider';
 import ScrollToTop from '@/components/ui/ScrollToTop';
+import BackLink from '@/components/ui/BackLink';
 
 const BASE_URL = 'https://merhan.design';
 
@@ -86,6 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <ScrollToTop />
+        <BackLink />
         <CursorProvider />
         {children}
       </body>
