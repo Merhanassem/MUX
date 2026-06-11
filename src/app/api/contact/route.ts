@@ -36,12 +36,32 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: firstError }, { status: 422 });
     }
 
-    const { name, email, company, topic, budget, message, website } = result.data;
+    const { name, email, company, topic, budget, message, website, attachments } = result.data;
 
     // ── Honeypot bot check ───────────────────────────────────────────────────
     if (website) {
       // Silently succeed — don't reveal honeypot
       return NextResponse.json({ success: true });
+    }
+
+    // ── Attachment guard ─────────────────────────────────────────────────────
+    // Keep total well under Vercel's ~4.5MB request-body limit. base64 inflates
+    // raw size by ~37%, so cap the decoded total at 3.5MB.
+    const MAX_TOTAL_BYTES = 3.5 * 1024 * 1024;
+    let resendAttachments: { filename: string; content: Buffer }[] | undefined;
+    if (attachments && attachments.length) {
+      const decoded = attachments.map((a) => ({
+        filename: a.filename,
+        content: Buffer.from(a.content, 'base64'),
+      }));
+      const total = decoded.reduce((sum, a) => sum + a.content.byteLength, 0);
+      if (total > MAX_TOTAL_BYTES) {
+        return NextResponse.json(
+          { error: 'Attachments are too large (3.5MB total max). Try fewer/smaller files or share a link.' },
+          { status: 413 }
+        );
+      }
+      resendAttachments = decoded;
     }
 
     const ipHash = await hashIp(ip);
@@ -68,13 +88,14 @@ export async function POST(req: NextRequest) {
 
     try {
       await Promise.all([
-        // Notification to owner
+        // Notification to owner (includes any uploaded files as attachments)
         resend.emails.send({
           from: `MUX Portfolio <${fromEmail}>`,
           to:   toEmail,
           subject: `New inquiry from ${name}${topic ? ` — ${topic}` : ''}`,
           html: ownerNotificationHtml({ name, email, company, topic, budget, message }),
           replyTo: email,
+          ...(resendAttachments ? { attachments: resendAttachments } : {}),
         }),
         // Confirmation to visitor
         resend.emails.send({

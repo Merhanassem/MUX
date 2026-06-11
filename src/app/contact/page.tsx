@@ -57,14 +57,28 @@ export default function ContactPage() {
   const formRef    = useRef<HTMLDivElement>(null);
   const formInView = useInView(formRef, { once: true, margin: '-60px' });
 
+  const MAX_TOTAL = 3.5 * 1024 * 1024; // keep total under Vercel's request-body limit
+
   const addFiles = useCallback((incoming: FileList | null) => {
     if (!incoming) return;
-    const allowed = Array.from(incoming).filter((f) => f.size <= 10 * 1024 * 1024);
+    setFormError(null);
     setFiles((prev) => {
       const names = new Set(prev.map((f) => f.name));
-      return [...prev, ...allowed.filter((f) => !names.has(f.name))].slice(0, 5);
+      let total = prev.reduce((sum, f) => sum + f.size, 0);
+      const next = [...prev];
+      for (const f of Array.from(incoming)) {
+        if (names.has(f.name) || next.length >= 5) continue;
+        if (total + f.size > MAX_TOTAL) {
+          setFormError('Attachments can be up to 3.5MB total. Add fewer/smaller files or share a link.');
+          continue;
+        }
+        next.push(f);
+        names.add(f.name);
+        total += f.size;
+      }
+      return next;
     });
-  }, []);
+  }, [MAX_TOTAL]);
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -79,10 +93,27 @@ export default function ContactPage() {
     setLoading(true);
     try {
       const selectedTopic = topics.find((t) => t.id === topic)?.label ?? topic ?? '';
+
+      // Convert uploaded files to base64 so they can ride along as email attachments
+      const attachments = await Promise.all(
+        files.map(
+          (file) =>
+            new Promise<{ filename: string; content: string; contentType: string }>((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onload = () => {
+                const result = reader.result as string; // data:<type>;base64,<data>
+                resolve({ filename: file.name, content: result.split(',')[1] ?? '', contentType: file.type });
+              };
+              reader.onerror = () => reject(new Error('read-failed'));
+              reader.readAsDataURL(file);
+            })
+        )
+      );
+
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, company: '', topic: selectedTopic, budget, message, website: '' }),
+        body: JSON.stringify({ name, email, company: '', topic: selectedTopic, budget, message, website: '', attachments }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -294,7 +325,7 @@ export default function ContactPage() {
                       {/* File upload */}
                       <div>
                         <label className="text-[10px] font-body text-secondary-text tracking-widest uppercase block mb-2">
-                          Attach files <span className="normal-case tracking-normal ml-1 opacity-60">(optional — briefs, screens, references · max 10MB each · up to 5)</span>
+                          Attach files <span className="normal-case tracking-normal ml-1 opacity-60">(optional — briefs, screens, references · up to 5 files · 3.5MB total)</span>
                         </label>
                         <div
                           onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
