@@ -491,7 +491,7 @@ export default function ContactPage() {
                   <div className="space-y-3">
                     {[
                       { label: 'Email', href: 'mailto:merhanassem22@gmail.com', value: 'merhanassem22@gmail.com' },
-                      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/merhan-assem-53040a231/', value: 'linkedin.com/in/merhan-assem' },
+                      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/merhan-assem-mux', value: 'linkedin.com/in/merhan-assem-mux' },
                       { label: 'Behance', href: 'https://www.behance.net/merhanassem2', value: 'behance.net/merhanassem2' },
                     ].map((link) => (
                       <a

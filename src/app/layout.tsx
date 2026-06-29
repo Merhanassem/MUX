@@ -72,9 +72,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             url: 'https://www.merhanassem.com',
             email: 'merhanassem22@gmail.com',
             sameAs: [
-              'https://www.linkedin.com/in/merhan-assem-53040a231/',
-              'https://www.behance.net/merhanassem2',
+              'https://www.linkedin.com/in/merhan-assem-mux',
               'https://www.instagram.com/mux.design.svg',
+              'https://www.facebook.com/share/1cYJKvLkT1/',
+              'https://www.behance.net/merhanassem2',
             ],
             address: { '@type': 'PostalAddress', addressLocality: 'Cairo', addressCountry: 'EG' },
           }) }}
