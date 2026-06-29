@@ -4,7 +4,7 @@ import CursorProvider from '@/components/ui/CursorProvider';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import BackLink from '@/components/ui/BackLink';
 
-const BASE_URL = 'https://merhanassem.com';
+const BASE_URL = 'https://www.merhanassem.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     siteName: 'Merhan Assem Portfolio',
     locale: 'en_US',
     type: 'website',
-    images: [{ url: '/about-hero.png', width: 1536, height: 1024, alt: 'Merhan Assem — Senior Product Designer' }],
+    images: [{ url: '/og-image.jpg', width: 1200, height: 800, alt: 'Merhan Assem — Senior Product Designer' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Merhan Assem — Senior Product Designer',
     description: 'Senior Product Designer based in Cairo. 4+ years turning complex systems into clear, scalable products.',
-    images: ['/about-hero.png'],
+    images: ['/og-image.jpg'],
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large' } },
   alternates: { canonical: BASE_URL },
@@ -69,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             '@type': 'Person',
             name: 'Merhan Assem',
             jobTitle: 'Senior Product Designer',
-            url: 'https://merhanassem.com',
+            url: 'https://www.merhanassem.com',
             email: 'merhanassem22@gmail.com',
             sameAs: [
               'https://www.linkedin.com/in/merhan-assem-53040a231/',

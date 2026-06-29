@@ -90,7 +90,7 @@ export function visitorConfirmationHtml({ name }: { name: string }) {
     <p>Thanks for reaching out. I've received your message and will review it as soon as possible.</p>
     <p>In the meantime, feel free to explore more of my work.</p>
     <div class="divider"></div>
-    <div class="cta"><a href="https://merhanassem.com/work">View my work →</a></div>
+    <div class="cta"><a href="https://www.merhanassem.com/work">View my work →</a></div>
     <div class="sig">
       Talk soon,
       <strong>Merhan Assem</strong>

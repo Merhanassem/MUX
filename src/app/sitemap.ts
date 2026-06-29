@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { projects } from '@/lib/data/projects';
 
-const BASE_URL = 'https://merhanassem.com';
+const BASE_URL = 'https://www.merhanassem.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
