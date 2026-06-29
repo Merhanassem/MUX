@@ -471,10 +471,10 @@ export default function ContactPage() {
                     <span className="text-xs font-body text-background/70 tracking-wider uppercase">Available now</span>
                   </div>
                   <p className="font-display text-2xl text-background mb-3 leading-snug">
-                    Taking on select projects for Q3 2025
+                    Currently taking on new work
                   </p>
                   <p className="font-body text-sm text-background/65 leading-relaxed">
-                    I prefer embedded, long-term work over one-off deliverables — but happy to start with a focused sprint.
+                    I do my best work embedded with a team over time — but if you&apos;ve got a focused project in mind, that&apos;s a perfect place to start.
                   </p>
                 </div>
 
