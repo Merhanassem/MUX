@@ -3,11 +3,11 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Contact',
   description: 'Have a product challenge worth solving? Let\'s talk.',
-  alternates: { canonical: 'https://merhan.design/contact' },
+  alternates: { canonical: 'https://merhanassem.com/contact' },
   openGraph: {
     title: 'Contact Merhan Assem',
     description: 'Have a product challenge worth solving? Let\'s talk.',
-    url: 'https://merhan.design/contact',
+    url: 'https://merhanassem.com/contact',
   },
 };
 

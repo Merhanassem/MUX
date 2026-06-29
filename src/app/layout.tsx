@@ -4,7 +4,7 @@ import CursorProvider from '@/components/ui/CursorProvider';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import BackLink from '@/components/ui/BackLink';
 
-const BASE_URL = 'https://merhan.design';
+const BASE_URL = 'https://merhanassem.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -69,7 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             '@type': 'Person',
             name: 'Merhan Assem',
             jobTitle: 'Senior Product Designer',
-            url: 'https://merhan.design',
+            url: 'https://merhanassem.com',
             email: 'merhanassem22@gmail.com',
             sameAs: [
               'https://www.linkedin.com/in/merhan-assem-53040a231/',
