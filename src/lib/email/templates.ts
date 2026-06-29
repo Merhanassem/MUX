@@ -32,7 +32,7 @@ export function ownerNotificationHtml({
 <body>
 <div class="wrap">
   <div class="header">
-    <div class="logo">M<span>U</span>X</div>
+    <img src="https://www.merhanassem.com/email-logo.png" alt="MUX" width="88" style="display:block;border:0;height:auto;" />
     <div class="badge">🔔 New Lead</div>
   </div>
   <div class="body">
@@ -83,7 +83,7 @@ export function visitorConfirmationHtml({ name }: { name: string }) {
 <body>
 <div class="wrap">
   <div class="header">
-    <div class="logo">M<span>U</span>X</div>
+    <img src="https://www.merhanassem.com/email-logo.png" alt="MUX" width="112" style="display:inline-block;border:0;height:auto;" />
   </div>
   <div class="body">
     <h1>Hi ${firstName}, got your message. 👋</h1>
