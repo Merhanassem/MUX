@@ -103,6 +103,8 @@ export async function POST(req: NextRequest) {
           to:   email,
           subject: 'Got your message — talk soon',
           html: visitorConfirmationHtml({ name }),
+          // No mailbox exists at fromEmail, so route visitor replies to the inbox
+          replyTo: toEmail,
         }),
       ]);
     } catch (emailErr) {
