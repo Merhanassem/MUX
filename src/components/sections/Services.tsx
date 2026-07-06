@@ -55,7 +55,7 @@ const services = [
     num: '06',
     title: 'From Zero → MVP',
     tagline: 'From idea to launch-ready product.',
-    description: 'My strongest differentiator. I\'ve taken Taaly, Park Peace, Relax, Cash, Dream Cairo, and Animap from concept to fully designed product. I know what it takes.',
+    description: 'My strongest differentiator. I\'ve taken multiple products from concept to fully designed, launch-ready MVP — so I know exactly what it takes to get there.',
     bullets: ['Full discovery', 'Architecture & flows', 'High-fidelity design', 'Handoff & launch'],
     accent: '#F72585',
     dark: false,
@@ -131,7 +131,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         {/* Description + bullets */}
         <div className="flex-1">
           <p
-            className="font-body leading-relaxed mb-6 text-sm md:text-base"
+            className={`font-body leading-relaxed mb-6 text-sm md:text-base ${service.featured ? 'md:pr-40' : ''}`}
             style={{ color: service.dark ? 'rgba(247,245,241,0.72)' : 'rgba(9,9,13,0.68)' }}
           >
             {service.description}
